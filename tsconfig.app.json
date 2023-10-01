@@ -1,12 +1,18 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
-  "exclude": ["src/**/__tests__/*"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "vite.config.ts"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".",
+    "strict": true,
+    "noImplicitAny": true,
+    "useUnknownInCatchVariables": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "#components/*": ["./src/components/*"],
+      "#composables/*": ["./src/composables/*"],
+      "#plugins/*": ["./src/plugins/*"],
+      "#src/*": ["./src/*"]
     }
   }
 }

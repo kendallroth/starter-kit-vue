@@ -1,14 +1,17 @@
-import './assets/main.css'
+import { createPinia } from "pinia";
+import { createApp } from "vue";
 
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { componentsPlugin } from "#plugins/components";
+import { vuetifyPlugin } from "#plugins/vuetify";
 
-import App from './App.vue'
-import router from './router'
+import App from "./App.vue";
+import router from "./router";
 
-const app = createApp(App)
+// Supports font weights 200 - 800
+import "@fontsource-variable/manrope";
 
-app.use(createPinia())
-app.use(router)
+const app = createApp(App);
 
-app.mount('#app')
+app.use(createPinia()).use(vuetifyPlugin).use(router).use(componentsPlugin);
+
+app.mount("#app");
