@@ -2,12 +2,18 @@
 debugView:
   title: "Depurar"
   sections:
+    config:
+      title: "Configuración de la aplicación"
+      items:
+        gitCommit: "Compromiso de git"
     shortcuts:
       title: "Atajos de teclado"
       items:
         displayLanguage: "Selector de idioma de visualización"
         toggleDebug: "Alternar superposición de depuración"
         toggleTheme: "Alternar tema claro/oscuro"
+  snackbars:
+    copied: "Copiado al portapapeles"
 
 # Welcome View
 welcomeView:

@@ -2,12 +2,18 @@
 debugView:
   title: "Debug"
   sections:
+    config:
+      title: "App Configuration"
+      items:
+        gitCommit: "Git commit"
     shortcuts:
       title: "Keyboard Shortcuts"
       items:
         displayLanguage: "Display language selector"
         toggleDebug: "Toggle debug overlay"
         toggleTheme: "Toggle light/dark theme"
+  snackbars:
+    copied: "Copied to clipboard"
 
 # Welcome View
 welcomeView:
