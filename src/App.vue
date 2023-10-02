@@ -1,25 +1,18 @@
 <script setup lang="ts">
-import { mdiWeatherNight as mdiDark, mdiWeatherSunny as mdiLight } from "@mdi/js";
-import { computed } from "vue";
+import { ref } from "vue";
 
-import { useAppTheme } from "#composables/use-app-theme";
+import { TheAppBar, TheAppDebug, TheAppDrawer } from "#components/single";
 
-const appTheme = useAppTheme();
-
-const themeIcon = computed(() => (appTheme.dark.value ? mdiDark : mdiLight));
+const showMobileDrawer = ref(false);
 </script>
 
 <template>
   <VApp>
-    <VAppBar color="primary">
-      <VAppBarTitle>StarterKit - Vue</VAppBarTitle>
-      <VSpacer />
-      <LayoutStack class="mx-4">
-        <VBtn density="comfortable" :icon="themeIcon" @click="appTheme.toggleTheme" />
-      </LayoutStack>
-    </VAppBar>
+    <TheAppBar @toggle-menu="showMobileDrawer = !showMobileDrawer" />
     <VMain>
+      <TheAppDrawer :show-on-mobile="showMobileDrawer" />
       <RouterView />
+      <TheAppDebug />
     </VMain>
   </VApp>
 </template>

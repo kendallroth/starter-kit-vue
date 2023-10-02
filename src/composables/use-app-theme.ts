@@ -1,3 +1,4 @@
+import { usePreferredDark } from "@vueuse/core";
 import { computed, type ComputedRef, type Ref } from "vue";
 import { watchEffect } from "vue";
 import { type ThemeInstance, useTheme as useVuetifyTheme } from "vuetify";
@@ -27,12 +28,19 @@ interface AppThemeComposable {
 
 export const APP_THEME_STORAGE_KEY = "app-theme";
 
+/**
+ * App theme (persisted) with matching Vuetify theme
+ *
+ * NOTE: Developed manually for learning/teaching, rather than using 'vue-use' composable!
+ */
 export const useAppTheme = (): AppThemeComposable => {
   const vuetifyTheme = useVuetifyTheme();
 
+  const prefersDark = usePreferredDark();
+
   const [storedAppTheme, setStoredAppTheme] = useStorageState(localStorage, APP_THEME_STORAGE_KEY, {
-    // TODO: Set default value from media preference query
-    defaultValue: AppTheme.LIGHT,
+    // Default value is set by user's browser color scheme preference
+    defaultValue: prefersDark.value ? AppTheme.DARK : AppTheme.LIGHT,
     valid: (value) => Object.values(AppTheme).includes(value),
   });
 

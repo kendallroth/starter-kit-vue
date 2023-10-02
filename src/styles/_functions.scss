@@ -1,0 +1,10 @@
+@use "vuetify/settings" as v;
+
+/// Calculate spacing from Vuetify spacer (4px)
+///
+/// @param {number} $value
+///   Number to multiply against spacing variable
+/// @return {number} Calculated Vuetify spacing
+@function spacing($value) {
+  @return v.$spacer * $value;
+}

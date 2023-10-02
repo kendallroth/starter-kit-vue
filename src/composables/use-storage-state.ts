@@ -1,9 +1,15 @@
 import { ref, type Ref } from "vue";
 
+/** Storage key prefix to avoid collisions with other apps */
+export const STORAGE_KEY_PREFIX = "sk-vue";
+
 interface StorageStateOptions<T> {
+  /** Default value (used for missing/invalid values) */
   defaultValue: T;
   /** Whether parsed value is valid or not (will use `defaultValue` if not) */
   valid?: (value: T) => boolean;
+  /** Storage key prefix override */
+  prefix?: string;
 }
 
 /**
@@ -18,22 +24,25 @@ export const useStorageState = <T>(
   key: string,
   options: StorageStateOptions<T>,
 ): [Ref<T>, (val: T) => void] => {
-  const { defaultValue, valid } = options;
+  const { defaultValue, prefix, valid } = options;
+
+  /** Prefixed storage key */
+  const storageKey = `${prefix ?? STORAGE_KEY_PREFIX}-${key}`;
 
   const loadValue = (): T => {
-    const storedValue = storage.getItem(key);
+    const storedValue = storage.getItem(storageKey);
     if (storedValue === null) return defaultValue;
 
     try {
       const parsedValue = JSON.parse(storedValue);
 
       if (valid && !valid(parsedValue)) {
-        throw new Error(`Invalid stored value for '${key}'`);
+        throw new Error(`Invalid stored value for '${storageKey}'`);
       }
 
       return parsedValue;
     } catch (e) {
-      storage.removeItem(key);
+      storage.removeItem(storageKey);
       return defaultValue;
     }
   };
@@ -45,9 +54,9 @@ export const useStorageState = <T>(
   const setValue = (value: T) => {
     valueRef.value = value;
     if (value === undefined) {
-      storage.removeItem(key);
+      storage.removeItem(storageKey);
     } else {
-      storage.setItem(key, JSON.stringify(value));
+      storage.setItem(storageKey, JSON.stringify(value));
     }
   };
 

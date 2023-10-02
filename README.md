@@ -35,3 +35,30 @@ npm install
 ### Linting / Formatting
 
 > **NOTE:** Ideally [BiomeJS](https://biomejs.dev/) would be used for formatting and linting; however, it does not support Vue yet (WIP)!
+
+## Development
+
+### SASS
+
+#### Vuetify
+
+To reference Vuetify variables/settings, the `vuetify/settings` stylesheet can be imported.
+
+```scss
+@use "vuetify/settings" as v;
+
+:root {
+  --v-spacer: #{v.$spacer};
+}
+```
+
+#### Debugging
+
+Occasionally debugging SASS variables (especially from Vuetify) may be helpful. The `@debug` keyword allows printing a variable in the development console while compiling.
+
+```scss
+$variable: 10px;
+
+@debug $variable;
+@debug "$variable is '#{$variable}'";
+```

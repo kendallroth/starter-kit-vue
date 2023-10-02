@@ -1,3 +1,7 @@
+// Supports font weights 200 - 800
+import "@fontsource-variable/manrope";
+import "./styles/app.scss";
+
 import { createPinia } from "pinia";
 import { createApp } from "vue";
 
@@ -6,9 +10,6 @@ import { vuetifyPlugin } from "#plugins/vuetify";
 
 import App from "./App.vue";
 import router from "./router";
-
-// Supports font weights 200 - 800
-import "@fontsource-variable/manrope";
 
 const app = createApp(App);
 

@@ -1,5 +1,6 @@
 import "vuetify/styles";
 import { createVuetify, type ThemeDefinition } from "vuetify";
+import { md3 } from "vuetify/blueprints";
 import { aliases, mdi } from "vuetify/iconsets/mdi-svg";
 
 // Theme generated with "#00696d" at https://m3.material.io/theme-builder#/custom
@@ -15,7 +16,7 @@ const lightTheme: ThemeDefinition = {
     "on-secondary": "#ffffff",
     error: "#ba1a1a",
     "on-error": "#ffffff",
-    surface: "#ffffff",
+    surface: "#fbffff",
     "on-surface": "#191c1c",
   },
 };
@@ -37,15 +38,9 @@ const darkTheme: ThemeDefinition = {
 };
 
 export const vuetifyPlugin = createVuetify({
+  blueprint: md3,
   // Customize Vuetify default props
-  defaults: {
-    VBtn: {
-      rounded: "md",
-    },
-    VCard: {
-      rounded: "lg",
-    },
-  },
+  defaults: {},
   icons: {
     defaultSet: "mdi",
     aliases,

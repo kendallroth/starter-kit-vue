@@ -9,6 +9,24 @@ const getAliasPath = (filepath: string) =>
   fileURLToPath(new URL(`./src/${filepath}`, import.meta.url));
 
 export default defineConfig({
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // Some SCSS files (vars, mixins, etc) should automatically be imported in all SCSS
+        //   files and Vue template blocks to reduce common SCSS imports.
+        // NOTE: While `@use` is preferred to `@import`, it must come before any other SCSS!
+        additionalData(source: string, fp: string) {
+          // Avoid importing utility files within any Vuetify SCSS
+          if (fp.includes("vuetify")) return source;
+
+          return `
+              @use "#styles/_functions.scss" as *;
+              ${source}
+            `;
+        },
+      },
+    },
+  },
   plugins: [
     vue(),
     // Customize Vuetify plugin: https://www.npmjs.com/package/vite-plugin-vuetify
@@ -24,6 +42,8 @@ export default defineConfig({
       "#components": getAliasPath("components"),
       "#composables": getAliasPath("composables"),
       "#plugins": getAliasPath("plugins"),
+      "#styles": getAliasPath("styles"),
+      // Suggest root 'src/' path last (prefer other aliases)
       "#src": getAliasPath(""),
     },
   },

@@ -1,0 +1,5 @@
+@use "vuetify/settings" as v;
+
+:root {
+  --v-spacer: #{v.$spacer};
+}
