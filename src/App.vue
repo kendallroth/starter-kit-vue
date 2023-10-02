@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { TheAppBar, TheAppDebug, TheAppDrawer } from "#components/single";
+import { TheAppBar, TheAppDebug, TheAppDrawer, TheAppSnackbar } from "#components/single";
 
 const showMobileDrawer = ref(false);
 </script>
@@ -13,6 +13,7 @@ const showMobileDrawer = ref(false);
       <TheAppDrawer :show-on-mobile="showMobileDrawer" />
       <RouterView />
       <TheAppDebug />
+      <TheAppSnackbar />
     </VMain>
   </VApp>
 </template>
