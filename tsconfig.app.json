@@ -8,8 +8,10 @@
     "strict": true,
     "noImplicitAny": true,
     "useUnknownInCatchVariables": true,
+    "module": "ESNext",
     "paths": {
       "#components/*": ["./src/components/*"],
+      "#config/*": ["./src/config/*"],
       "#composables/*": ["./src/composables/*"],
       "#plugins/*": ["./src/plugins/*"],
       "#src/*": ["./src/*"]

@@ -1,0 +1,23 @@
+# Common app actions
+actions:
+  cancel: "Cancelar"
+  close: "Cerrar"
+  confirm: "Confirmar"
+  save: "Ahorrar"
+
+# App navigation drawer
+appDrawer:
+  links:
+    debug: "Depurar"
+    welcome: "Bienvenido"
+
+# App language dialog
+appLanguageDialog:
+  title: "Idioma"
+  messages:
+    beta: "¡Los idiomas beta están incompletos y solo tienen fines de prueba!"
+
+# Common app choices/decisions
+choices:
+  no: "No"
+  yes: "Sí"

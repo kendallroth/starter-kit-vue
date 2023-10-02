@@ -40,6 +40,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "#components": getAliasPath("components"),
+      "#config": getAliasPath("config"),
       "#composables": getAliasPath("composables"),
       "#plugins": getAliasPath("plugins"),
       "#styles": getAliasPath("styles"),

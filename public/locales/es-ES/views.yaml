@@ -1,0 +1,16 @@
+# Debug View
+debugView:
+  title: "Depurar"
+  sections:
+    shortcuts:
+      title: "Atajos de teclado"
+      items:
+        displayLanguage: "Selector de idioma de visualización"
+        toggleDebug: "Alternar superposición de depuración"
+        toggleTheme: "Alternar tema claro/oscuro"
+
+# Welcome View
+welcomeView:
+  title: "StarterKit - Vue!"
+  subtitle: "Bienvenido a el Vue StarterKit!"
+

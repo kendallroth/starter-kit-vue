@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { mdiViewDashboard as mdiDashboard, mdiBug as mdiDebug } from "@mdi/js";
+import { computed } from "vue";
 import { useDisplay } from "vuetify";
+
+import { useCommonTranslations } from "#composables/use-localization";
 
 defineProps<{
   /** Whether to show drawer on mobile */
@@ -9,16 +12,19 @@ defineProps<{
 
 const { mobile } = useDisplay();
 
+const tCommon = useCommonTranslations();
+
 interface NavigationItem {
   icon?: string;
   label: string;
   to: string;
 }
 
-const navigationItems: NavigationItem[] = [
-  { icon: mdiDashboard, label: "Welcome", to: "/" },
-  { icon: mdiDebug, label: "Debug", to: "/debug" },
-];
+// TODO: Figure out why this causes max recursion warnings during HMR!
+const navigationItems = computed<NavigationItem[]>(() => [
+  { icon: mdiDashboard, label: tCommon("common:appDrawer.links.welcome"), to: "/" },
+  { icon: mdiDebug, label: tCommon("common:appDrawer.links.debug"), to: "/debug" },
+]);
 </script>
 
 <template>

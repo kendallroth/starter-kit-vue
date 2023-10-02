@@ -1,15 +1,21 @@
 <script setup lang="ts">
 import { LayoutStack } from "#components/layout";
+import { useCommonTranslations, useViewsTranslations } from "#composables/use-localization";
+
+const tCommon = useCommonTranslations();
+const tLocal = useViewsTranslations({
+  keyPrefix: "welcomeView",
+});
 </script>
 
 <template>
   <LayoutStack align-items="center" flex-grow justify-content="center">
     <VCard class="pa-2 elevation-2">
-      <VCardTitle>StarterKit - Vue</VCardTitle>
-      <VCardText>Welcome to the Vue StarterKit!</VCardText>
+      <VCardTitle>{{ tLocal("title") }}</VCardTitle>
+      <VCardText>{{ tLocal("subtitle") }}</VCardText>
       <VCardActions>
-        <VBtn disabled variant="outlined">Quit</VBtn>
-        <VBtn color="primary" variant="elevated">Start</VBtn>
+        <VBtn disabled variant="outlined">{{ tCommon("actions.close") }}</VBtn>
+        <VBtn color="primary" variant="elevated">{{ tCommon("actions.confirm") }}</VBtn>
       </VCardActions>
     </VCard>
   </LayoutStack>

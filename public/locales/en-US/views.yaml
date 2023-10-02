@@ -1,0 +1,15 @@
+# Debug View
+debugView:
+  title: "Debug"
+  sections:
+    shortcuts:
+      title: "Keyboard Shortcuts"
+      items:
+        displayLanguage: "Display language selector"
+        toggleDebug: "Toggle debug overlay"
+        toggleTheme: "Toggle light/dark theme"
+
+# Welcome View
+welcomeView:
+  title: "StarterKit - Vue!"
+  subtitle: "Welcome to the Vue StarterKit!"
