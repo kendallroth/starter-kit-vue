@@ -15,6 +15,21 @@ debugView:
   snackbars:
     copied: "Copiado al portapapeles"
 
+# Form View
+formView:
+  title: "Forma"
+  fields:
+    age:
+      label: "Edad"
+    email:
+      label: "Correo electrónico"
+    name:
+      label: "Nombre"
+    optional:
+      label: "Opcional"
+    password:
+      label: "Contraseña"
+
 # Welcome View
 welcomeView:
   title: "StarterKit - Vue!"

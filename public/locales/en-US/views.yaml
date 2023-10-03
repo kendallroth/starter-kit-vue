@@ -15,6 +15,21 @@ debugView:
   snackbars:
     copied: "Copied to clipboard"
 
+# Form View
+formView:
+  title: "Form"
+  fields:
+    age:
+      label: "Age"
+    email:
+      label: "Email"
+    name:
+      label: "Name"
+    optional:
+      label: "Optional"
+    password:
+      label: "Password"
+
 # Welcome View
 welcomeView:
   title: "StarterKit - Vue!"

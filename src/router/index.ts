@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import WelcomeView from "../views/WelcomeView.vue";
 
+// Route level code-splitting via lazy loading can be achieved by returning an import function from
+//   the route `component` field (generates separate chunk for this route).
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -11,9 +14,13 @@ const router = createRouter({
       component: WelcomeView,
     },
     {
+      path: "/form",
+      name: "form",
+      component: () => import("../views/FormView/FormView.vue"),
+    },
+    {
       path: "/debug",
       name: "debug",
-      // Route level code-splitting via lazy loading (generates separate chunk for this route)
       component: () => import("../views/DebugView.vue"),
     },
   ],

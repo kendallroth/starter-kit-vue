@@ -1,3 +1,4 @@
+import { FormReset, FormSubmit, TextField } from "#components/form";
 import { ActionBar, LayoutStack } from "#components/layout";
 
 import type { App } from "vue";
@@ -10,6 +11,10 @@ import type { App } from "vue";
  */
 export const componentsPlugin = {
   install: (app: App) => {
+    // Form
+    app.component("FormReset", FormReset);
+    app.component("FormSubmit", FormSubmit);
+    app.component("TextField", TextField);
     // Layout
     app.component("ActionBar", ActionBar);
     app.component("LayoutStack", LayoutStack);

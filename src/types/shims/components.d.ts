@@ -8,8 +8,11 @@
  */
 declare module "@vue/runtime-core" {
   export interface GlobalComponents {
-    ActionBar: typeof import("@components/layout/ActionBar.vue").default;
-    LayoutStack: typeof import("@components/layout/LayoutStack.vue").default;
+    ActionBar: typeof import("#components/layout/ActionBar.vue").default;
+    FormReset: typeof import("#components/form/FormReset.vue").default;
+    FormSubmit: typeof import("#components/form/FormSubmit.vue").default;
+    LayoutStack: typeof import("#components/layout/LayoutStack.vue").default;
+    TextField: typeof import("#components/form/TextField.vue").default;
   }
 }
 

@@ -9,6 +9,12 @@ const getAliasPath = (filepath: string) =>
   fileURLToPath(new URL(`./src/${filepath}`, import.meta.url));
 
 export default defineConfig({
+  // NOTE: Define uses static text replacement in builds, and should ONLY be used for constants!
+  // Source: https://vitejs.dev/config/shared-options.html#define
+  define: {
+    // 'process' must be defined for 'assert' polyfill
+    "process.env": {},
+  },
   css: {
     preprocessorOptions: {
       scss: {
@@ -44,6 +50,7 @@ export default defineConfig({
       "#composables": getAliasPath("composables"),
       "#plugins": getAliasPath("plugins"),
       "#styles": getAliasPath("styles"),
+      "#utilities": getAliasPath("utilities"),
       // Suggest root 'src/' path last (prefer other aliases)
       "#src": getAliasPath(""),
     },

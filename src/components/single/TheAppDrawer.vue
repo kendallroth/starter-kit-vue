@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { mdiViewDashboard as mdiDashboard, mdiBug as mdiDebug } from "@mdi/js";
+import {
+  mdiViewDashboard as mdiDashboard,
+  mdiBug as mdiDebug,
+  mdiFormTextbox as mdiForm,
+} from "@mdi/js";
 import { computed } from "vue";
 import { useDisplay } from "vuetify";
 
@@ -22,8 +26,9 @@ interface NavigationItem {
 
 // TODO: Figure out why this causes max recursion warnings during HMR!
 const navigationItems = computed<NavigationItem[]>(() => [
-  { icon: mdiDashboard, label: tCommon("common:appDrawer.links.welcome"), to: "/" },
-  { icon: mdiDebug, label: tCommon("common:appDrawer.links.debug"), to: "/debug" },
+  { icon: mdiDashboard, label: tCommon("appDrawer.links.welcome"), to: "/" },
+  { icon: mdiForm, label: tCommon("appDrawer.links.forms"), to: "/form" },
+  { icon: mdiDebug, label: tCommon("appDrawer.links.debug"), to: "/debug" },
 ]);
 </script>
 

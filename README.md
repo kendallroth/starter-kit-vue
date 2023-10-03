@@ -38,6 +38,43 @@ npm install
 
 ## Development
 
+- [x] App theming
+- [x] Localization
+- [x] Short keys / debug
+- [x] Form base components
+- [ ] Validation localization
+- [ ] Vue Query (queries, pagination, mutations)
+- [ ] MSW endpoints (with fixtures)
+- [ ] Form submission (success/failure)
+  - Should set form-level server error for API errors
+
+### Forms
+
+#### VeeValidate
+
+##### Custom Field Components
+
+Custom form fields bound with `vee-validate` should **not** have `initialValue` specified in `useField()`! This will apparently overwrite the form's `initialValues`, which undesired behaviour! This does mean that if the form does not specify default values for all fields with `initialValues`, any unspecified fields will be `undefined` on submit!
+
+##### Schema Files
+
+Forms typically have a `schema.ts` file with several exports.
+
+- Yup schema
+  - Yup validation schema (required separately for inferring type)
+- Yup schema (typed)
+  - Wrapped Yup schema with transformations applied during validation/submit
+- Schema TS type
+  - Inferred TS type from Yup schema (useful for default values, form-related types, etc)
+- Default values
+  - Default/initial values for empty form (useful for VeeValidate `initialValues`, resetting form, etc)
+
+##### Caveats
+
+Unlike React Hook Form, VeeValidate forms are limited to one per parent component. Since the context is provided to children via injection, there would be no way to differentiate forms.
+
+Unlike React Hook Form, there is no documented way to access the entire form context from a child component. However, since form context is provided in parent components utilizing `useForm`, it can be injected in child components with `inject(FormContextKey)`. This will be potentially `undefined` (can handle with `assert`) and must be cast from `PrivateFormContext` to `FormContext`.
+
 ### SASS
 
 #### Vuetify

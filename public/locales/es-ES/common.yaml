@@ -9,6 +9,7 @@ actions:
 appDrawer:
   links:
     debug: "Depurar"
+    forms: "Formas"
     welcome: "Bienvenido"
 
 # App language dialog
