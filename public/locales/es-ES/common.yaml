@@ -22,3 +22,21 @@ appLanguageDialog:
 choices:
   no: "No"
   yes: "Sí"
+
+# Yup error localization
+validations:
+  invalid: "{{path}} es inválido"
+  invalidType: "{{path}} debe ser {{type}}"
+  oneOf: "{{path}} debe ser uno de: {{values}}"
+  required: "{{path}} es requerido"
+  number:
+    max: "{{path}} no debe ser más que {{max}}"
+    min: "{{path}} debe ser al menos {{min}}"
+  string:
+    email: "{{path}} debe ser un correo electrónico válido"
+    emailInvalidDomain: "{{path}} utiliza un dominio de correo electrónico no válido."
+    match: "{{path}} tiene formato inválido"
+    min: "{{path}} debe tener al menos {{min}} caracteres"
+    max: "{{path}} debe tener menos de {{max}} caracteres"
+    url: "{{path}} debe ser una URL válido"
+  unknown: "Unknown error occurred"

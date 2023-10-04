@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 import { useForm } from "vee-validate";
+import { computed } from "vue";
 
 import { useSnackbar } from "#composables/use-app-snackbar";
 import { useCommonTranslations, useViewsTranslations } from "#composables/use-localization";
 import { getTypedFormField } from "#utilities/form";
+import { sleep } from "#utilities/sleep";
 
 import { type SampleForm, sampleFormSchemaDefaults, sampleFormSchemaTyped } from "./schema";
 
@@ -21,10 +23,28 @@ const { handleSubmit, resetForm } = useForm<SampleForm>({
   validationSchema: sampleFormSchemaTyped,
 });
 
+const selectItems = computed(() => [
+  { label: "Canada", value: "CA" },
+  { label: "United States", value: "US" },
+]);
+
 const handleFormSubmit = handleSubmit(async (data, actions) => {
-  // TODO
-  notify("Submitted form!");
+  await sleep(500);
+
   console.log("Submitted form", data);
+
+  try {
+    if (data.switch) {
+      throw new Error("Invalid API simulated");
+    }
+
+    notify("Submitted form!");
+    actions.resetForm();
+  } catch (e) {
+    // TODO: Handle parsing error message via utilities
+    notifyError("Error while submitting form");
+    return;
+  }
 });
 
 const handleFormReset = () => {
@@ -38,19 +58,30 @@ const handleFormReset = () => {
       <VCardTitle>{{ tLocal("title") }}</VCardTitle>
       <VCardText>
         <LayoutStack is="form" align-items="stretch" flex-grow @submit="handleFormSubmit">
-          <TextField autofocus :label="tLocal('fields.name.label')" :name="typeFieldName('name')" />
-          <TextField :label="tLocal('fields.email.label')" :name="typeFieldName('email')" />
+          <TextField autofocus :label="tLocal('fields.text.label')" :name="typeFieldName('text')" />
           <TextField
-            :label="tLocal('fields.password.label')"
-            :name="typeFieldName('password')"
+            :label="tLocal('fields.hidden.label')"
+            :name="typeFieldName('hidden')"
             type="password"
           />
           <TextField
-            :label="tLocal('fields.age.label')"
-            :name="typeFieldName('age')"
+            :label="tLocal('fields.number.label')"
+            :name="typeFieldName('number')"
             type="number"
           />
+          <SelectField
+            clearable
+            item-title="label"
+            :items="selectItems"
+            :label="tLocal('fields.select.label')"
+            :name="typeFieldName('select')"
+          />
           <TextField :label="tLocal('fields.optional.label')" :name="typeFieldName('optional')" />
+          <CheckboxField
+            :label="tLocal('fields.checkbox.label')"
+            :name="typeFieldName('checkbox')"
+          />
+          <SwitchField :label="tLocal('fields.switch.label')" :name="typeFieldName('switch')" />
           <ActionBar right>
             <FormReset @click="handleFormReset">
               {{ tCommon("actions.cancel") }}

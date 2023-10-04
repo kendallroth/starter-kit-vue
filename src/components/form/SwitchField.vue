@@ -1,62 +1,58 @@
 <script lang="ts" setup>
-import { mdiEye, mdiEyeOff } from "@mdi/js";
 import { useField, useIsSubmitting } from "vee-validate";
-import { computed, ref, toRef } from "vue";
+import { computed, toRef } from "vue";
 
 import { useFieldErrorMessage } from "./use-field-error-message";
 
-type TextFieldProps = {
+type SwitchFieldProps = {
   disabled?: boolean;
   hint?: string;
   label?: string;
   name: string;
-  type?: string;
 };
 
-const props = withDefaults(defineProps<TextFieldProps>(), {
+const props = withDefaults(defineProps<SwitchFieldProps>(), {
   disabled: false,
   hint: "",
   label: undefined,
-  type: "text",
 });
 
 // Allow VeeValidate to respond to changes in name/label
 const nameRef = toRef(props.name);
 const labelRef = toRef(props.label);
 
-const passwordHidden = ref(true);
-
-const { value: formValue, handleBlur, handleChange } = useField(nameRef);
+const {
+  value: formValue,
+  handleBlur,
+  handleChange,
+} = useField(nameRef, undefined, {
+  // Technically switches are a form of checkbox, and such must specify checkbox type and
+  //   checked/unchecked values for custom checkbox to work (see docs).
+  type: "checkbox",
+  checkedValue: true,
+  uncheckedValue: false,
+});
 
 const formSubmitting = useIsSubmitting();
 
 const errorMessage = useFieldErrorMessage(nameRef, labelRef);
 
-const inputType = computed(() => {
-  if (props.type !== "password") return props.type;
-  return passwordHidden.value ? "password" : "text";
-});
-const inputIcon = computed(() =>
-  props.type === "password" ? (passwordHidden.value ? mdiEyeOff : mdiEye) : undefined,
-);
-
-const toggleHidden = () => {
-  passwordHidden.value = !passwordHidden.value;
-};
+// Switches should not reserve space for errors by default (does cause popping, but is waste of space)
+const hideDetails = computed(() => !errorMessage.value && !toRef(props.hint).value);
 </script>
 
 <template>
-  <VTextField
+  <VSwitch
     v-bind="$attrs"
-    :append-inner-icon="inputIcon"
     :disabled="disabled || formSubmitting"
     :error="Boolean(errorMessage)"
+    :hide-details="hideDetails"
     :hint="errorMessage ?? hint"
     :label="label"
     :model-value="formValue"
-    :type="inputType"
     @blur="handleBlur"
-    @click:append-inner="toggleHidden"
     @update:model-value="handleChange"
   />
 </template>
+
+<style lang="scss"></style>

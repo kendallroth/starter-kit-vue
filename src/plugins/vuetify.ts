@@ -40,7 +40,25 @@ const darkTheme: ThemeDefinition = {
 export const vuetifyPlugin = createVuetify({
   blueprint: md3,
   // Customize Vuetify default props
-  defaults: {},
+  defaults: {
+    VCheckbox: {
+      color: "primary",
+      persistentHint: true,
+    },
+    VSelect: {
+      color: "primary",
+      persistentHint: true,
+    },
+    VSwitch: {
+      color: "primary",
+      inset: true,
+      persistentHint: true,
+    },
+    VTextField: {
+      color: "primary",
+      persistentHint: true,
+    },
+  },
   icons: {
     defaultSet: "mdi",
     aliases,

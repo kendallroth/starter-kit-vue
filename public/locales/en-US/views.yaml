@@ -19,16 +19,20 @@ debugView:
 formView:
   title: "Form"
   fields:
-    age:
-      label: "Age"
-    email:
-      label: "Email"
-    name:
-      label: "Name"
+    checkbox:
+      label: "Checkbox"
+    hidden:
+      label: "Hidden"
+    number:
+      label: "Number"
     optional:
       label: "Optional"
-    password:
-      label: "Password"
+    select:
+      label: "Select"
+    switch:
+      label: "Switch (simulate API error)"
+    text:
+      label: "Text"
 
 # Welcome View
 welcomeView:

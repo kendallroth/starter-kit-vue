@@ -1,9 +1,5 @@
 <script lang="ts" setup>
-import assert from "assert";
-
-import { type FormContext, FormContextKey, useIsSubmitting } from "vee-validate";
-import { inject } from "vue";
-
+import { useFormContext } from "#composables/use-form-context";
 import { shouldDisableSubmit } from "#utilities/form";
 
 interface FormSubmitProps {
@@ -26,18 +22,14 @@ withDefaults(defineProps<FormSubmitProps>(), {
   loading: false,
 });
 
-// Inject VeeValidate form context (provided by 'useForm' in parent)
-const formContext = inject(FormContextKey) as unknown as FormContext;
-assert(formContext, "'FormSubmit' likely used outside 'FormContext'!");
-
-const formSubmitting = useIsSubmitting();
+const formContext = useFormContext();
 </script>
 
 <template>
   <VBtn
     v-bind="$attrs"
     :disabled="shouldDisableSubmit(formContext) || disabled"
-    :loading="formSubmitting || loading"
+    :loading="formContext.isSubmitting.value || loading"
     type="submit"
   >
     <slot name="default" />

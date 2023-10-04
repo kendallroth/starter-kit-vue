@@ -41,12 +41,15 @@ npm install
 - [x] App theming
 - [x] Localization
 - [x] Short keys / debug
-- [x] Form base components
+  - TODO: Must fix to be platform specific!
+- [x] Form components
+  - Wrappers should extend Vuetify components to retain props
 - [ ] Validation localization
 - [ ] Vue Query (queries, pagination, mutations)
 - [ ] MSW endpoints (with fixtures)
 - [ ] Form submission (success/failure)
   - Should set form-level server error for API errors
+  - Error message utilities
 
 ### Forms
 
@@ -73,7 +76,9 @@ Forms typically have a `schema.ts` file with several exports.
 
 Unlike React Hook Form, VeeValidate forms are limited to one per parent component. Since the context is provided to children via injection, there would be no way to differentiate forms.
 
-Unlike React Hook Form, there is no documented way to access the entire form context from a child component. However, since form context is provided in parent components utilizing `useForm`, it can be injected in child components with `inject(FormContextKey)`. This will be potentially `undefined` (can handle with `assert`) and must be cast from `PrivateFormContext` to `FormContext`.
+Unlike React Hook Form, there is no documented way to access the entire form context from a child component. However, since form context is provided in parent components utilizing `useForm`, it can be injected in child components with `inject(FormContextKey)`. This will be potentially `undefined` (can handle with `assert`) and must be cast from `PrivateFormContext` to `FormContext`. A utility hook has been created to address this (`useFormContext`), and a [GitHub issue](https://github.com/logaretm/vee-validate/issues/4490) opened to request in VeeValidate.
+
+Using the inferred form types (from Yup schema) may cause issues when wishing to set empty intial values for fields marked as `required()`. This can be circumvented in the initial values declaration by using the `SetOptional` type from `type-fest` to set various keys as optional on the initial values object. Since the `useForm` permits passing partial initial values, setting some as optional is permitted. However, actually modifying/replacing field types will cause issues with initial values!
 
 ### SASS
 

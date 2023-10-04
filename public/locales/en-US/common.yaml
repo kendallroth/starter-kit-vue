@@ -23,4 +23,20 @@ choices:
   no: "No"
   yes: "Yes"
 
-
+# Yup error localization
+validations:
+  invalid: "{{path}} is invalid"
+  invalidType: "{{path}} must be a {{type}}"
+  oneOf: "{{path}} must be one of: {{values}}"
+  required: "{{path}} is required"
+  number:
+    max: "{{path}} must be no more than {{max}}"
+    min: "{{path}} must be at least {{min}}"
+  string:
+    email: "{{path}} must be a valid email"
+    emailInvalidDomain: "{{path}} uses an invalid email domain"
+    match: "{{path}} has invalid format"
+    min: "{{path}} must be at least {{min}} characters"
+    max: "{{path}} must be less than {{max}} characters"
+    url: "{{path}} must be a valid url"
+  unknown: "Unknown error occurred"

@@ -19,19 +19,22 @@ debugView:
 formView:
   title: "Forma"
   fields:
-    age:
-      label: "Edad"
-    email:
-      label: "Correo electrónico"
-    name:
-      label: "Nombre"
+    checkbox:
+      label: "Caja de verificación"
+    hidden:
+      label: "Oculto"
+    number:
+      label: "Numero"
     optional:
       label: "Opcional"
-    password:
-      label: "Contraseña"
+    select:
+      label: "Seleccionar"
+    switch:
+      label: "Cambiar (simular error de API)"
+    text:
+      label: "Texto"
 
 # Welcome View
 welcomeView:
   title: "StarterKit - Vue!"
   subtitle: "Bienvenido a el Vue StarterKit!"
-

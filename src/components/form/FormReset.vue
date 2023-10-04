@@ -1,9 +1,5 @@
 <script lang="ts" setup>
-import assert from "assert";
-
-import { type FormContext, FormContextKey } from "vee-validate";
-import { inject } from "vue";
-
+import { useFormContext } from "#composables/use-form-context";
 import { shouldDisableCancel } from "#utilities/form";
 
 interface FormResetProps {
@@ -26,9 +22,7 @@ withDefaults(defineProps<FormResetProps>(), {
   enableWhenEmpty: false,
 });
 
-// Inject VeeValidate form context (provided by 'useForm' in parent)
-const formContext = inject(FormContextKey) as unknown as FormContext;
-assert(formContext, "'FormReset' likely used outside 'FormContext'!");
+const formContext = useFormContext();
 </script>
 
 <template>

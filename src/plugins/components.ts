@@ -1,4 +1,11 @@
-import { FormReset, FormSubmit, TextField } from "#components/form";
+import {
+  CheckboxField,
+  FormReset,
+  FormSubmit,
+  SelectField,
+  SwitchField,
+  TextField,
+} from "#components/form";
 import { ActionBar, LayoutStack } from "#components/layout";
 
 import type { App } from "vue";
@@ -12,9 +19,12 @@ import type { App } from "vue";
 export const componentsPlugin = {
   install: (app: App) => {
     // Form
+    app.component("CheckboxField", CheckboxField);
     app.component("FormReset", FormReset);
     app.component("FormSubmit", FormSubmit);
     app.component("TextField", TextField);
+    app.component("SwitchField", SwitchField);
+    app.component("SelectField", SelectField);
     // Layout
     app.component("ActionBar", ActionBar);
     app.component("LayoutStack", LayoutStack);
