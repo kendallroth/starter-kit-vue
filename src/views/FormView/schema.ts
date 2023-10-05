@@ -1,5 +1,5 @@
 import { toTypedSchema } from "@vee-validate/yup";
-import { boolean, type InferType, type Message, number, object, string } from "yup";
+import { boolean, type InferType, number, object, string } from "yup";
 
 import { typeYupLocalizedError } from "#utilities/localization";
 
@@ -17,7 +17,7 @@ export const sampleFormSchema = object({
     typeYupLocalizedError({
       key: "common:validations.required",
       path: "checkbox",
-    }) as unknown as Message<any>,
+    }),
   ),
   hidden: string().required(),
   number: number()

@@ -4,7 +4,7 @@ import Backend from "i18next-http-backend";
 import I18NextVue from "i18next-vue";
 import yaml from "js-yaml";
 
-import { supportedLanguages } from "#config/localization";
+import { supportedLanguages } from "#utilities/localization";
 
 import type { App } from "vue";
 

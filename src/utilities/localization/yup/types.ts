@@ -1,3 +1,5 @@
+import type { Message } from "yup";
+
 /**
  * Localization config for Yup validation error
  *
@@ -17,7 +19,9 @@
  *   values: { min: 2 } // Optional
  * }
  */
-export interface YupLocalizedError {
+// NOTE: Extends `Message` to allow passing directly to Yup validation message overrides
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type YupLocalizedError = Message<any> & {
   /** Key in translation files */
   key: string;
   /**
@@ -38,4 +42,4 @@ export interface YupLocalizedError {
   values?: {
     [key: string]: unknown;
   };
-}
+};

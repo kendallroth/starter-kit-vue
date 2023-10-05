@@ -1,4 +1,4 @@
-import { appConfig } from "./app";
+import { appConfig } from "#config/app";
 
 /**
  * App language options

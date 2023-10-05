@@ -45,6 +45,9 @@ export const vuetifyPlugin = createVuetify({
       color: "primary",
       persistentHint: true,
     },
+    VProgressCircular: {
+      color: "primary",
+    },
     VSelect: {
       color: "primary",
       persistentHint: true,

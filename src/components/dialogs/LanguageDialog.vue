@@ -4,7 +4,7 @@ import { useTranslation } from "i18next-vue";
 import { computed } from "vue";
 
 import { useCommonTranslations } from "#composables/use-localization";
-import { supportedLanguages } from "#config/localization";
+import { supportedLanguages } from "#utilities/localization";
 
 defineProps<{
   open: boolean;
