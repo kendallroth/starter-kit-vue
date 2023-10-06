@@ -10,6 +10,7 @@ appDrawer:
   links:
     debug: "Debug"
     forms: "Forms"
+    todos: "Todos"
     welcome: "Welcome"
 
 # App language dialog

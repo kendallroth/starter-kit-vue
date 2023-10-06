@@ -19,7 +19,7 @@ withDefaults(
       <Typography class="py-4 px-6" variant="title-1">{{ title }}</Typography>
     </slot>
     <VDivider />
-    <LayoutStack class="pa-4 page-content" v-bind="contentProps">
+    <LayoutStack class="pa-4 page-content pretty-scroll" v-bind="contentProps">
       <slot name="default" />
     </LayoutStack>
   </VCard>
@@ -45,20 +45,5 @@ withDefaults(
   position: relative;
   // Scrolling should occur only within page content (not parent page!)
   overflow-y: auto;
-
-  &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(var(--v-theme-primary), 0.6);
-    border-radius: 4px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background-color: rgba(var(--v-theme-primary), 0.1);
-    border: 1px solid rgb(var(--v-theme-divider));
-  }
 }
 </style>

@@ -41,9 +41,17 @@ export const vuetifyPlugin = createVuetify({
   blueprint: md3,
   // Customize Vuetify default props
   defaults: {
+    VAlert: {
+      border: true,
+      variant: "tonal",
+    },
     VCheckbox: {
       color: "primary",
       persistentHint: true,
+    },
+    VPagination: {
+      density: "compact",
+      totalVisible: 5,
     },
     VProgressCircular: {
       color: "primary",
@@ -78,6 +86,11 @@ export const vuetifyPlugin = createVuetify({
     themes: {
       dark: darkTheme,
       light: lightTheme,
+    },
+    variations: {
+      colors: ["primary"],
+      lighten: 2,
+      darken: 2,
     },
   },
 });

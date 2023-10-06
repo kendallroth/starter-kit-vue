@@ -34,6 +34,14 @@ formView:
     text:
       label: "Text"
 
+# Todos view
+todosView:
+  title: "Todos"
+  form:
+    fields:
+      todo:
+        label: "Add todo"
+
 # Welcome View
 welcomeView:
   title: "StarterKit - Vue!"

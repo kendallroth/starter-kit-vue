@@ -45,11 +45,14 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
+      "#api": getAliasPath("api"),
       "#components": getAliasPath("components"),
       "#config": getAliasPath("config"),
       "#composables": getAliasPath("composables"),
       "#plugins": getAliasPath("plugins"),
+      "#slices": getAliasPath("slices"),
       "#styles": getAliasPath("styles"),
+      "#types": getAliasPath("types"),
       "#utilities": getAliasPath("utilities"),
       // Suggest root 'src/' path last (prefer other aliases)
       "#src": getAliasPath(""),

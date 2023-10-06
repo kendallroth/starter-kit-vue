@@ -10,10 +10,14 @@
     "useUnknownInCatchVariables": true,
     "module": "ESNext",
     "paths": {
+      "#api/*": ["./src/api/*"],
       "#components/*": ["./src/components/*"],
       "#config/*": ["./src/config/*"],
       "#composables/*": ["./src/composables/*"],
       "#plugins/*": ["./src/plugins/*"],
+      "#slices/*": ["./src/slices/*"],
+      "#styles/*": ["./src/styles/*"],
+      "#types/*": ["./src/types/*"],
       "#utilities/*": ["./src/utilities/*"],
       "#src/*": ["./src/*"]
     }

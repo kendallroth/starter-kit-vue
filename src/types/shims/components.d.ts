@@ -20,6 +20,7 @@ declare module "@vue/runtime-core" {
     ActionBar: typeof import("#components/layout/ActionBar.vue").default;
     AppPage: typeof import("#components/layout/AppPage.vue").default;
     LayoutStack: typeof import("#components/layout/LayoutStack.vue").default;
+    ProgressLoader: typeof import("#components/layout/ProgressLoader.vue").default;
 
     // Typography
     Typography: typeof import("#components/typography/Typography.vue").default;

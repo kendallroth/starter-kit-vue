@@ -3,6 +3,9 @@ export interface AppConfig {
   commitSha?: string;
   /** Whether app is running in development */
   development: boolean;
+  links: {
+    api: string;
+  };
   /** Whether app is running in production */
   production: boolean;
 }

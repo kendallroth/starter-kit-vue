@@ -6,7 +6,7 @@ import {
   SwitchField,
   TextField,
 } from "#components/form";
-import { ActionBar, AppPage, LayoutStack } from "#components/layout";
+import { ActionBar, AppPage, LayoutStack, ProgressLoader } from "#components/layout";
 import { Typography } from "#components/typography";
 
 import type { App } from "vue";
@@ -30,6 +30,7 @@ export const componentsPlugin = {
     app.component("ActionBar", ActionBar);
     app.component("AppPage", AppPage);
     app.component("LayoutStack", LayoutStack);
+    app.component("ProgressLoader", ProgressLoader);
     // Typography
     app.component("Typography", Typography);
   },
