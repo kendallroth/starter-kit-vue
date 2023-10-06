@@ -6,7 +6,8 @@ import {
   SwitchField,
   TextField,
 } from "#components/form";
-import { ActionBar, LayoutStack } from "#components/layout";
+import { ActionBar, AppPage, LayoutStack } from "#components/layout";
+import { Typography } from "#components/typography";
 
 import type { App } from "vue";
 
@@ -27,6 +28,9 @@ export const componentsPlugin = {
     app.component("SelectField", SelectField);
     // Layout
     app.component("ActionBar", ActionBar);
+    app.component("AppPage", AppPage);
     app.component("LayoutStack", LayoutStack);
+    // Typography
+    app.component("Typography", Typography);
   },
 };

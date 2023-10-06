@@ -1,5 +1,9 @@
 @use "vuetify/settings" as v;
 
 :root {
+  // Provide Vuetify spacing variable
   --v-spacer: #{v.$spacer};
+
+  // Allow scrolling to be applied by default within children (vs forced scroll bar)
+  overflow-y: auto;
 }

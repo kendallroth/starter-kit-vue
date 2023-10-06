@@ -33,6 +33,8 @@ const loading = computed(() => {
 <style scoped lang="scss">
 .v-main {
   display: flex;
-  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

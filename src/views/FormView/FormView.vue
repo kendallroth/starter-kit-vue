@@ -53,9 +53,8 @@ const handleFormReset = () => {
 </script>
 
 <template>
-  <LayoutStack align-items="center" class="pa-8" flex-grow>
-    <VCard min-width="400">
-      <VCardTitle>{{ tLocal("title") }}</VCardTitle>
+  <AppPage :content-props="{ alignItems: 'center' }" :title="tLocal('title')">
+    <VCard min-width="400" variant="outlined">
       <VCardText>
         <LayoutStack is="form" align-items="stretch" flex-grow @submit="handleFormSubmit">
           <TextField autofocus :label="tLocal('fields.text.label')" :name="typeFieldName('text')" />
@@ -93,7 +92,7 @@ const handleFormReset = () => {
         </LayoutStack>
       </VCardText>
     </VCard>
-  </LayoutStack>
+  </AppPage>
 </template>
 
 <style lang="scss" scoped></style>

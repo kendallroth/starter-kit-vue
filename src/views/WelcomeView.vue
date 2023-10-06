@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { LayoutStack } from "#components/layout";
 import { useSnackbar } from "#composables/use-app-snackbar";
 import { useCommonTranslations, useViewsTranslations } from "#composables/use-localization";
 
@@ -12,8 +11,8 @@ const { notifyNotImplemented } = useSnackbar();
 </script>
 
 <template>
-  <LayoutStack align-items="center" flex-grow justify-content="center">
-    <VCard class="pa-2 elevation-2">
+  <AppPage :title="tLocal('title')">
+    <VCard variant="outlined">
       <VCardTitle>{{ tLocal("title") }}</VCardTitle>
       <VCardText>{{ tLocal("subtitle") }}</VCardText>
       <VCardActions>
@@ -23,5 +22,5 @@ const { notifyNotImplemented } = useSnackbar();
         </VBtn>
       </VCardActions>
     </VCard>
-  </LayoutStack>
+  </AppPage>
 </template>

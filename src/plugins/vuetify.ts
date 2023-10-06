@@ -62,6 +62,9 @@ export const vuetifyPlugin = createVuetify({
       persistentHint: true,
     },
   },
+  display: {
+    mobileBreakpoint: "md",
+  },
   icons: {
     defaultSet: "mdi",
     aliases,

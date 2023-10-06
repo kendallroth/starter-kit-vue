@@ -3,7 +3,6 @@ import { mdiContentCopy as mdiCopy } from "@mdi/js";
 import { useClipboard } from "@vueuse/core";
 import { computed } from "vue";
 
-import { LayoutStack } from "#components/layout";
 import { useSnackbar } from "#composables/use-app-snackbar";
 import { useViewsTranslations } from "#composables/use-localization";
 import { appConfig } from "#config/app";
@@ -29,9 +28,8 @@ const handleCopy = (value: string) => {
 </script>
 
 <template>
-  <LayoutStack align-items="center" flex-grow justify-content="center">
-    <VCard class="pa-2 elevation-2">
-      <VCardTitle>{{ tLocal("title") }}</VCardTitle>
+  <AppPage :title="tLocal('title')">
+    <VCard variant="outlined">
       <VCardText>
         <div class="mb-2 text-subtitle-1">{{ tLocal("sections.config.title") }}</div>
         <LayoutStack align-items="center" class="mb-3" direction="row">
@@ -56,5 +54,5 @@ const handleCopy = (value: string) => {
         </LayoutStack>
       </VCardText>
     </VCard>
-  </LayoutStack>
+  </AppPage>
 </template>

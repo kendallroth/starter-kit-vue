@@ -9,8 +9,9 @@ type FlexAlignment =
   | "space-between"
   | "space-around";
 
-type LayoutStackProps = {
+export interface LayoutStackProps {
   alignItems?: FlexAlignment;
+  alignSelf?: FlexAlignment;
   direction?: "row" | "column";
   flexGrow?: boolean;
   flexWrap?: boolean;
@@ -19,10 +20,11 @@ type LayoutStackProps = {
   justifyContent?: FlexAlignment;
   /** Spacing between items (4px increments) */
   spacing?: number;
-};
+}
 
 const props = withDefaults(defineProps<LayoutStackProps>(), {
   alignItems: "flex-start",
+  alignSelf: undefined,
   direction: "column",
   flexGrow: false,
   flexWrap: false,
@@ -47,6 +49,7 @@ const flexWrapValue = computed(() => (props.flexWrap ? "wrap" : "nowrap"));
   flex-grow: v-bind(flexGrowValue);
   flex-direction: v-bind(direction);
   flex-wrap: v-bind(flexWrapValue);
+  align-self: v-bind(alignSelf);
   align-items: v-bind(alignItems);
   justify-content: v-bind(justifyContent);
   gap: calc(v-bind(spacing) * 4px);

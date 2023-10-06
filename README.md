@@ -44,7 +44,7 @@ npm install
   - TODO: Must fix to be platform specific!
 - [x] Form components
   - Wrappers should extend Vuetify components to retain props
-- [ ] Validation localization
+- [x] Validation localization
 - [ ] Vue Query (queries, pagination, mutations)
 - [ ] MSW endpoints (with fixtures)
 - [ ] Form submission (success/failure)
