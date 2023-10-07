@@ -1,11 +1,5 @@
 <script lang="ts" setup>
-import {
-  mdiPlusCircle as mdiAdd,
-  mdiCircleOutline as mdiCheckEmpty,
-  mdiCheckCircle as mdiCheckFilled,
-  mdiDelete as mdiDelete,
-  mdiRefresh,
-} from "@mdi/js";
+import { mdiPlusCircle as mdiAdd, mdiRefresh } from "@mdi/js";
 import dayjs from "dayjs";
 import { ref } from "vue";
 
@@ -18,6 +12,9 @@ import {
   useTodosQuery,
   useTodoUpdateMutation,
 } from "#slices/todos/queries";
+import { getError } from "#utilities/errors";
+
+import { TodoItem } from "./_components";
 
 import type { Todo } from "#slices/todos/types";
 
@@ -52,7 +49,7 @@ const handleTodoAdd = async () => {
   try {
     await todoAddMutation.mutateAsync({ title: value });
   } catch (e) {
-    notifyError("Something went wrong");
+    notifyError(getError(e));
     return;
   }
 
@@ -68,7 +65,7 @@ const handleTodoUpdate = async (todo: Todo) => {
       completedAt: todo.completedAt ? null : dayjs().toISOString(),
     });
   } catch (e) {
-    notifyError("Something went wrong");
+    notifyError(getError(e));
     return;
   }
 
@@ -92,7 +89,7 @@ const handleTodoDelete = async (todo: Todo) => {
   try {
     await todoDeleteMutation.mutateAsync(todo.id);
   } catch (e) {
-    notifyError("Something went wrong");
+    notifyError(getError(e));
     return;
   }
 
@@ -137,35 +134,14 @@ const handleTodoDelete = async (todo: Todo) => {
           density="compact"
           @update:selected="handleTodoSelection"
         >
-          <VListItem
+          <TodoItem
             v-for="todo in response.data ?? []"
             :key="todo.id"
             :disabled="isFetching || (deletingTodo && selectedTodo?.id === todo.id)"
-            :value="todo"
-          >
-            <template #prepend>
-              <VCheckbox
-                class="flex-grow-0 ml-n2"
-                :false-icon="mdiCheckEmpty"
-                hide-details
-                :model-value="!!todo.completedAt"
-                :true-icon="mdiCheckFilled"
-                @click.stop
-                @update:model-value="handleTodoUpdate(todo)"
-              />
-            </template>
-            <template #append="{ isSelected }">
-              <VBtn
-                v-if="isSelected"
-                color="error"
-                density="compact"
-                :icon="mdiDelete"
-                variant="text"
-                @click.stop="handleTodoDelete(todo)"
-              />
-            </template>
-            <VListItemTitle>{{ todo.title }}</VListItemTitle>
-          </VListItem>
+            :todo="todo"
+            @delete="handleTodoDelete(todo)"
+            @toggle="handleTodoUpdate(todo)"
+          />
         </VList>
         <VPagination
           class="mt-2"
