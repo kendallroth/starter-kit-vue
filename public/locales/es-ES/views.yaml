@@ -6,6 +6,10 @@ debugView:
       title: "Configuración de la aplicación"
       items:
         gitCommit: "Compromiso de git"
+    settings:
+      title: "Ajustes"
+      items:
+        screenSize: "Indicador del tamaño de la pantalla de visualización"
     shortcuts:
       title: "Atajos de teclado"
       items:
@@ -33,6 +37,18 @@ formView:
       label: "Cambiar (simular error de API)"
     text:
       label: "Texto"
+
+# Settings view
+settingsView:
+  title: "Settings"
+  sections:
+    personalization:
+      title: "Personalización"
+      items:
+        language:
+          label: "Idioma"
+        theme:
+          label: "Thema"
 
 # Todos view
 todosView:

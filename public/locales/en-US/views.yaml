@@ -6,11 +6,15 @@ debugView:
       title: "App Configuration"
       items:
         gitCommit: "Git commit"
+    settings:
+      title: "Settings"
+      items:
+        screenSize: "Display screen size indicator"
     shortcuts:
       title: "Keyboard Shortcuts"
       items:
         displayLanguage: "Display language selector"
-        toggleDebug: "Toggle debug overlay"
+        toggleDebug: "Toggle debug dialog"
         toggleTheme: "Toggle light/dark theme"
   snackbars:
     copied: "Copied to clipboard"
@@ -33,6 +37,18 @@ formView:
       label: "Switch (simulate API error)"
     text:
       label: "Text"
+
+# Settings view
+settingsView:
+  title: "Settings"
+  sections:
+    personalization:
+      title: "Personalization"
+      items:
+        language:
+          label: "Language"
+        theme:
+          label: "Theme"
 
 # Todos view
 todosView:

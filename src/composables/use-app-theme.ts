@@ -1,3 +1,8 @@
+import {
+  mdiThemeLightDark as mdiAuto,
+  mdiWeatherNight as mdiDark,
+  mdiWeatherSunny as mdiLight,
+} from "@mdi/js";
 import { usePreferredDark } from "@vueuse/core";
 import { computed, type ComputedRef, type Ref } from "vue";
 import { watchEffect } from "vue";
@@ -6,10 +11,16 @@ import { type ThemeInstance, useTheme as useVuetifyTheme } from "vuetify";
 import { useStorageState } from "./use-storage-state";
 
 export enum AppTheme {
-  // TODO: Determine whether "auto" theme should work
+  AUTO = "auto",
   DARK = "dark",
   LIGHT = "light",
 }
+
+export const themeIconMap: Record<AppTheme, string> = {
+  [AppTheme.AUTO]: mdiAuto,
+  [AppTheme.DARK]: mdiDark,
+  [AppTheme.LIGHT]: mdiLight,
+};
 
 type VuetifyTheme = ThemeInstance["current"];
 
@@ -39,19 +50,39 @@ export const useAppTheme = (): AppThemeComposable => {
   const prefersDark = usePreferredDark();
 
   const [storedAppTheme, setStoredAppTheme] = useStorageState(localStorage, APP_THEME_STORAGE_KEY, {
-    // Default value is set by user's browser color scheme preference
-    defaultValue: prefersDark.value ? AppTheme.DARK : AppTheme.LIGHT,
+    defaultValue: AppTheme.AUTO,
     valid: (value) => Object.values(AppTheme).includes(value),
   });
 
+  /** App theme must be either light or dark (auto is not a valid theme) */
+  const appThemeFinal = computed(() =>
+    storedAppTheme.value === AppTheme.AUTO
+      ? prefersDark.value
+        ? AppTheme.DARK
+        : AppTheme.LIGHT
+      : storedAppTheme.value,
+  );
+
+  const usingDark = computed(() => appThemeFinal.value === AppTheme.DARK);
+
+  // Update global Vuetify theme when app theme is modified
   watchEffect(() => {
-    vuetifyTheme.global.name.value = storedAppTheme.value;
+    vuetifyTheme.global.name.value = appThemeFinal.value;
   });
 
-  const usingDark = computed(() => storedAppTheme.value === AppTheme.DARK);
-
+  /**
+   * Toggle app theme
+   *
+   * NOTE: Only moves between light/dark (not auto)!
+   */
   const toggleAppTheme = () => {
-    setStoredAppTheme(storedAppTheme.value === AppTheme.LIGHT ? AppTheme.DARK : AppTheme.LIGHT);
+    let nextTheme: AppTheme;
+    if (storedAppTheme.value === AppTheme.AUTO) {
+      nextTheme = prefersDark.value ? AppTheme.LIGHT : AppTheme.DARK;
+    } else {
+      nextTheme = storedAppTheme.value === AppTheme.DARK ? AppTheme.LIGHT : AppTheme.DARK;
+    }
+    setStoredAppTheme(nextTheme);
   };
 
   return {

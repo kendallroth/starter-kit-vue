@@ -64,6 +64,7 @@ export const vuetifyPlugin = createVuetify({
       color: "primary",
       inset: true,
       persistentHint: true,
+      style: "--v-input-control-height: unset;",
     },
     VTextField: {
       color: "primary",

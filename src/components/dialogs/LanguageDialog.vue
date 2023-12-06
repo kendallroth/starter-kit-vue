@@ -31,7 +31,7 @@ const handleChangeLanguage = (code: string) => {
 <template>
   <VDialog
     class="ma-4"
-    max-width="350"
+    max-width="400"
     :model-value="open"
     width="100%"
     @update:model-value="(value) => (value ? undefined : emit('close'))"

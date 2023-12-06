@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {
   mdiViewDashboard as mdiDashboard,
-  mdiBug as mdiDebug,
   mdiFormTextbox as mdiForm,
   mdiViewList as mdiList,
+  mdiCog as mdiSettings,
 } from "@mdi/js";
 import { computed } from "vue";
 import { useDisplay } from "vuetify";
@@ -30,7 +30,7 @@ const navigationItems = computed<NavigationItem[]>(() => [
   { icon: mdiDashboard, label: tCommon("appDrawer.links.welcome"), to: "/" },
   { icon: mdiForm, label: tCommon("appDrawer.links.forms"), to: "/form" },
   { icon: mdiList, label: tCommon("appDrawer.links.todos"), to: "/todos" },
-  { icon: mdiDebug, label: tCommon("appDrawer.links.debug"), to: "/debug" },
+  { icon: mdiSettings, label: tCommon("appDrawer.links.settings"), to: "/settings" },
 ]);
 </script>
 

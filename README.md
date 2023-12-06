@@ -41,18 +41,20 @@ npm install
 - [x] App theming
 - [x] Localization
 - [x] Short keys / debug
-  - TODO: Must fix to be platform specific!
+  - [ ] Fix to be platform specific/independent!
 - [x] Form components
   - Wrappers should extend Vuetify components to retain prop type hints
 - [x] Validation localization
 - [x] Vue Query (queries, pagination, mutations)
   - Example of optimistic updates (on paginated route)
 - [x] MSW endpoints (with fixtures)
+- [ ] Implement JSON server for simple data persistance
 - [ ] Form submission (success/failure)
   - Should set form-level server error for API errors
   - Error message utilities
 - [ ] Styling utilities
   - Media query mixins, etc
+- [ ] Adjust typography variants
 
 ### Forms
 

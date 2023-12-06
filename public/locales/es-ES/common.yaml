@@ -10,6 +10,7 @@ appDrawer:
   links:
     debug: "Depurar"
     forms: "Formas"
+    settings: "Ajustes"
     todos: "Todos"
     welcome: "Bienvenido"
 
@@ -23,6 +24,13 @@ appLanguageDialog:
 choices:
   no: "No"
   yes: "Sí"
+
+# Common lists of options
+options:
+  theme:
+    auto: "Automático"
+    light: "Ligero"
+    dark: "Oscuro"
 
 # Yup error localization
 validations:

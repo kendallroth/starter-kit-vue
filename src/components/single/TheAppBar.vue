@@ -1,23 +1,17 @@
 <script setup lang="ts">
-import {
-  mdiWeatherNight as mdiDark,
-  mdiWeatherSunny as mdiLight,
-  mdiAlertDecagram as mdiLogo,
-  mdiMenu as mdiMenu,
-  mdiWifi as mdiNetwork,
-} from "@mdi/js";
+import { mdiAlertDecagram as mdiLogo, mdiMenu as mdiMenu, mdiWifi as mdiNetwork } from "@mdi/js";
 import { useIsFetching } from "@tanstack/vue-query";
 import { computed } from "vue";
 import { useDisplay } from "vuetify";
 
-import { useAppTheme } from "#composables/use-app-theme";
+import { themeIconMap, useAppTheme } from "#composables/use-app-theme";
 
 const emit = defineEmits<{
   (e: "toggle-menu"): void;
 }>();
 
-const appTheme = useAppTheme();
-const themeIcon = computed(() => (appTheme.dark.value ? mdiDark : mdiLight));
+const { appTheme, toggleTheme } = useAppTheme();
+const themeIcon = computed(() => themeIconMap[appTheme.value]);
 
 const { mobile } = useDisplay();
 
@@ -33,7 +27,7 @@ const fetching = useIsFetching();
       <Transition mode="out-in" name="fade">
         <VIcon v-if="fetching" color="primary-lighten-2" :icon="mdiNetwork" />
       </Transition>
-      <VBtn density="comfortable" :icon="themeIcon" @click="appTheme.toggleTheme" />
+      <VBtn density="comfortable" :icon="themeIcon" @click="toggleTheme" />
       <VBtn v-if="mobile" density="comfortable" :icon="mdiMenu" @click="emit('toggle-menu')" />
     </LayoutStack>
   </VAppBar>
