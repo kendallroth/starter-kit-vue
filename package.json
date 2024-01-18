@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "run-p type \"build:onlyl {@}\" --",
+    "api": "sk-api --port 3001",
+    "build": "run-p type \"build:only {@}\" --",
     "build:only": "vite build",
     "code:format": "prettier --write \"**/*.{ts,vue}\" --ignore-path .gitignore",
     "code:lint": "eslint \"**/*.{ts,vue}\" --ignore-path .gitignore",
@@ -16,6 +17,7 @@
   "dependencies": {
     "@faker-js/faker": "^8.1.0",
     "@fontsource-variable/manrope": "^5.0.12",
+    "@kendallroth/starter-kit-api": "^0.4.0",
     "@mdi/js": "^7.2.96",
     "@tanstack/vue-query": "^4.35.7",
     "@types/js-yaml": "^4.0.6",

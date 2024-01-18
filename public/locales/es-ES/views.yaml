@@ -40,7 +40,7 @@ formView:
 
 # Settings view
 settingsView:
-  title: "Settings"
+  title: "Ajustes"
   sections:
     personalization:
       title: "Personalización"
