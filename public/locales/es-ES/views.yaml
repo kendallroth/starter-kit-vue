@@ -1,3 +1,10 @@
+# Not found page
+appNotFound:
+  title: "Página no encontrada"
+  message: "La página que estás buscando no parece existir"
+  actions:
+    home: "Inicio"
+
 # Debug View
 debugView:
   title: "Depurar"

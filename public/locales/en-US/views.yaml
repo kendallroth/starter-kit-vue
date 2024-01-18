@@ -1,3 +1,10 @@
+# Not found page
+appNotFound:
+  title: "Page Not Found"
+  message: "The page you're looking for does not seem to exist"
+  actions:
+    home: "Home"
+
 # Debug View
 debugView:
   title: "Debug"
