@@ -45,6 +45,13 @@ formView:
     text:
       label: "Texto"
 
+# Quotes view
+quotesView:
+  title: "Citas"
+  sections:
+    quotes:
+      title: "Cita del día"
+
 # Settings view
 settingsView:
   title: "Ajustes"

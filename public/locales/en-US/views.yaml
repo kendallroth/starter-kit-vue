@@ -45,6 +45,10 @@ formView:
     text:
       label: "Text"
 
+# Quotes view
+quotesView:
+  title: "Quotes"
+
 # Settings view
 settingsView:
   title: "Settings"
@@ -69,3 +73,6 @@ todosView:
 welcomeView:
   title: "StarterKit - Vue!"
   subtitle: "Welcome to the Vue StarterKit!"
+  sections:
+    quotes:
+      title: "Quote of the Day"

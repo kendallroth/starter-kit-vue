@@ -3,7 +3,7 @@ import LayoutStack, { type LayoutStackProps } from "./LayoutStack.vue";
 
 withDefaults(
   defineProps<{
-    contentProps?: Partial<LayoutStackProps>;
+    contentProps?: Partial<LayoutStackProps & { class: string }>;
     title?: string;
   }>(),
   {
@@ -19,9 +19,11 @@ withDefaults(
       <Typography class="py-4 px-6" variant="title-1">{{ title }}</Typography>
     </slot>
     <VDivider />
+    <slot name="pre-content" />
     <LayoutStack class="pa-4 page-content pretty-scroll" v-bind="contentProps">
       <slot name="default" />
     </LayoutStack>
+    <slot name="post-content" />
   </VCard>
 </template>
 

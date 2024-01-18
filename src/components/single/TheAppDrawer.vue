@@ -3,6 +3,7 @@ import {
   mdiViewDashboard as mdiDashboard,
   mdiFormTextbox as mdiForm,
   mdiViewList as mdiList,
+  mdiCommentQuote as mdiQuote,
   mdiCog as mdiSettings,
 } from "@mdi/js";
 import { computed } from "vue";
@@ -30,6 +31,7 @@ const navigationItems = computed<NavigationItem[]>(() => [
   { icon: mdiDashboard, label: tCommon("appDrawer.links.welcome"), to: "/" },
   { icon: mdiForm, label: tCommon("appDrawer.links.forms"), to: "/form" },
   { icon: mdiList, label: tCommon("appDrawer.links.todos"), to: "/todos" },
+  { icon: mdiQuote, label: tCommon("appDrawer.links.quotes"), to: "/quotes" },
   { icon: mdiSettings, label: tCommon("appDrawer.links.settings"), to: "/settings" },
 ]);
 </script>

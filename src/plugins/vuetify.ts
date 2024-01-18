@@ -43,6 +43,8 @@ export const vuetifyPlugin = createVuetify({
   defaults: {
     VAlert: {
       border: true,
+      // Alerts default to fill flex containers (makes no sense)
+      class: "flex-grow-0 flex-shrink-0 flex-basis-auto",
       variant: "tonal",
     },
     VCheckbox: {

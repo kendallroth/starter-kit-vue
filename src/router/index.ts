@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import { FormView } from "../views/FormView";
+import { QuotesView } from "../views/QuotesView";
 import { TodosView } from "../views/TodosView";
 import WelcomeView from "../views/WelcomeView.vue";
 
@@ -24,6 +25,11 @@ const router = createRouter({
       path: "/todos",
       name: "todos",
       component: TodosView,
+    },
+    {
+      path: "/quotes",
+      name: "quotes",
+      component: QuotesView,
     },
     {
       path: "/settings",
