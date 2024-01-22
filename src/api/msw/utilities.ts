@@ -1,16 +1,12 @@
 import { faker } from "@faker-js/faker";
 import {
+  delay,
+  http,
   // NOTE: For some reason without importing these types all MSW utilities complain...
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  type DefaultBodyType,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  type MockedRequest,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  type MockedResponse,
-  type ResponseComposition,
-  rest,
-  type RestContext,
-  type RestRequest,
+  type HttpHandler,
+  HttpResponse,
+  type HttpResponseResolver,
 } from "msw";
 
 import { getPaginatedList } from "#api/fixtures/utilities";
@@ -29,11 +25,10 @@ interface MswConfig {
 export const getMswPath = (path: string) => `http://localhost:3001${path}`;
 
 /** MSW handler for routes that are not implemented (throws error) */
-export const handleNotImplemented = (
-  _req: RestRequest,
-  res: ResponseComposition,
-  ctx: RestContext,
-) => res(ctx.delay(), ctx.status(500), ctx.text("Mock not implemented"));
+export const handleNotImplemented: HttpResponseResolver = async () => {
+  await delay(250);
+  return HttpResponse.json({ message: "Mock not implemented" }, { status: 500 });
+};
 
 /**
  *  Generic MSW handler for non-paginated `GET /entity` endpoints
@@ -47,8 +42,9 @@ export const createMswGetAll = <T extends object>(
   fixture: TestFixture<T>,
   args?: MswConfig,
 ) => {
-  return rest.get<undefined, EmptyPathParams, T[]>(getMswPath(path), (_req, res, ctx) => {
-    return res(ctx.delay(args?.delay ?? 0), ctx.json(fixture.entityList));
+  return http.get<EmptyPathParams, undefined, T[]>(getMswPath(path), async () => {
+    await delay(args?.delay ?? 0);
+    return HttpResponse.json(fixture.entityList);
   });
 };
 
@@ -66,23 +62,22 @@ export const createMswGetPagination = <T extends object>(
   fixture: TestFixture<T>,
   args?: MswConfig,
 ) => {
-  return rest.get<undefined, EmptyPathParams, PaginatedResult<T>>(
+  return http.get<EmptyPathParams, undefined, PaginatedResult<T>>(
     getMswPath(path),
-    (req, res, ctx) => {
-      const page = req.url.searchParams.get("page");
-      const size = req.url.searchParams.get("size");
+    async ({ request }) => {
+      const url = new URL(request.url);
+      const page = url.searchParams.get("page");
+      const size = url.searchParams.get("size");
       const { data: paginatedList, pagination } = getPaginatedList(fixture.entityList, {
         page: page ? parseInt(page, 10) : undefined,
         size: size ? parseInt(size, 10) : undefined,
       });
 
-      return res(
-        ctx.delay(args?.delay ?? 0),
-        ctx.json({
-          data: paginatedList,
-          pagination,
-        }),
-      );
+      await delay(args?.delay ?? 0);
+      return HttpResponse.json({
+        data: paginatedList,
+        pagination,
+      });
     },
   );
 };
@@ -93,11 +88,11 @@ export const createMswPost = <T extends object>(
   fixture: TestFixture<T>,
   args?: MswConfig,
 ) => {
-  return rest.post<undefined>(getMswPath(path), async (req, res, ctx) => {
-    const body = await req.json();
+  return http.post(getMswPath(path), async ({ request }) => {
+    const body = (await request.json()) as T;
 
-    const delay = ctx.delay(args?.delay ?? 0);
-    return res(delay, ctx.json({ ...body, id: faker.string.uuid() }));
+    await delay(args?.delay ?? 0);
+    return HttpResponse.json({ ...body, id: faker.string.uuid() });
   });
 };
 
@@ -107,12 +102,12 @@ export const createMswGetForId = <T extends object>(
   fixture: TestFixture<T>,
   args?: MswConfig,
 ) => {
-  return rest.get<undefined, { id: string }, T>(getMswPath(path), (req, res, ctx) => {
-    const { id } = req.params;
+  return http.get<{ id: string }, undefined, T | null>(getMswPath(path), async ({ params }) => {
+    const { id } = params;
 
     const entity = fixture.entityMap[id];
-    const delay = ctx.delay(args?.delay ?? 0);
-    return entity ? res(delay, ctx.json(entity)) : res(delay, ctx.status(404));
+    await delay(args?.delay ?? 0);
+    return entity ? HttpResponse.json(entity) : HttpResponse.json(null, { status: 404 });
   });
 };
 
@@ -122,23 +117,24 @@ export const createMswPatchForId = <T extends object>(
   fixture: TestFixture<T>,
   args?: MswConfig,
 ) => {
-  return rest.patch<undefined, { id: string }, T>(getMswPath(path), async (req, res, ctx) => {
-    const { id } = req.params;
-    const patch = await req.json();
+  return http.patch<{ id: string }, undefined, T | null>(
+    getMswPath(path),
+    async ({ request, params }) => {
+      const { id } = params;
+      const patch = (await request.json()) as unknown as T;
 
-    const entity = fixture.entityMap[id];
-    const delay = ctx.delay(args?.delay ?? 0);
-    return entity
-      ? res(
-          delay,
-          ctx.json({
+      const entity = fixture.entityMap[id];
+      await delay(args?.delay ?? 0);
+
+      return entity
+        ? HttpResponse.json({
             // Simulates patching close enough for MSW purposes...
             ...entity,
             ...patch,
-          }),
-        )
-      : res(delay, ctx.status(404));
-  });
+          })
+        : HttpResponse.json(null, { status: 404 });
+    },
+  );
 };
 
 /** Generic MSW handler for `DELETE /entity/{id}` endpoints */
@@ -147,11 +143,11 @@ export const createMswDeleteForId = <T extends object>(
   fixture: TestFixture<T>,
   args?: MswConfig,
 ) => {
-  return rest.delete<undefined, { id: string }, T>(getMswPath(path), (req, res, ctx) => {
-    const { id } = req.params;
+  return http.delete<{ id: string }, undefined, T | null>(getMswPath(path), async ({ params }) => {
+    const { id } = params;
 
     const entity = fixture.entityMap[id];
-    const delay = ctx.delay(args?.delay ?? 0);
-    return entity ? res(delay, ctx.json(entity)) : res(delay, ctx.status(404));
+    await delay(args?.delay ?? 0);
+    return entity ? HttpResponse.json(entity) : HttpResponse.json(null, { status: 404 });
   });
 };

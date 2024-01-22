@@ -1,12 +1,12 @@
 import assert from "assert";
 
-import { rest, setupWorker, type SetupWorker } from "msw";
+import { http, passthrough } from "msw";
+import { setupWorker, type SetupWorker } from "msw/browser";
 
 import { mswEndpoints } from "./endpoints";
 import { getMswPath } from "./utilities";
 
 // Map handlers to enable extracting only the ones to be used at runtime
-// const headerToHandlerMap = keyBy(mswEndpoints, (endpoint) => endpoint.info.header);
 const headerToHandlerMap = mswEndpoints.reduce(
   (accum, endpoint) => {
     return { ...accum, [endpoint.info.header]: endpoint };
@@ -32,5 +32,5 @@ export const worker: SetupWorker = setupWorker(
   getHandlerRoute("PATCH", getMswPath("/todos/:id")),
   getHandlerRoute("POST", getMswPath("/todos")),
   // ...and pass-through for everything else.
-  rest.all<null>("*", (req) => req.passthrough()),
+  http.all("*", passthrough),
 );

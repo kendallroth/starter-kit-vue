@@ -8,9 +8,9 @@ import {
   createMswPost,
 } from "../utilities";
 
-import type { MSWEndpoint } from "../types";
+import type { HttpHandler } from "msw";
 
-export const todoMswEndpoints: MSWEndpoint[] = [
+export const todoMswEndpoints: HttpHandler[] = [
   createMswGetPagination("/todos", todoFixtureAll, { delay: 250 }),
   createMswGetForId("/todos/:id", todoFixtureAll, { delay: 250 }),
   createMswDeleteForId("/todos/:id", todoFixtureAll, { delay: 250 }),

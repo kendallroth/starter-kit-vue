@@ -1,12 +1,10 @@
-import { rest } from "msw";
+import { http, type HttpHandler } from "msw";
 
 import { todoMswEndpoints } from "./todo";
 import { getMswPath, handleNotImplemented } from "../utilities";
 
-import type { MSWEndpoint } from "../types";
-
-export const mswEndpoints: MSWEndpoint[] = [
+export const mswEndpoints: HttpHandler[] = [
   // Dummy endpoint for verifying MSW is working
-  rest.get(getMswPath("/not-implemented"), handleNotImplemented),
+  http.get(getMswPath("/not-implemented"), handleNotImplemented),
   ...todoMswEndpoints,
 ];
