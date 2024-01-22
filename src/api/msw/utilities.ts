@@ -14,7 +14,7 @@ import {
 } from "msw";
 
 import { getPaginatedList } from "#api/fixtures/utilities";
-import { type PaginatedResponse } from "#api/types";
+import { type PaginatedResult } from "#api/types";
 
 import { type EmptyPathParams } from "./types";
 
@@ -66,7 +66,7 @@ export const createMswGetPagination = <T extends object>(
   fixture: TestFixture<T>,
   args?: MswConfig,
 ) => {
-  return rest.get<undefined, EmptyPathParams, PaginatedResponse<T>>(
+  return rest.get<undefined, EmptyPathParams, PaginatedResult<T>>(
     getMswPath(path),
     (req, res, ctx) => {
       const page = req.url.searchParams.get("page");

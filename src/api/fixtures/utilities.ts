@@ -1,8 +1,4 @@
-import {
-  type ApiPaginationMeta,
-  DEFAULT_PAGE_SIZE,
-  type GetPaginatedEntitiesQueryArg,
-} from "#api/types";
+import { DEFAULT_PAGE_SIZE, type GetPaginatedEntitiesQueryArg, type Pagination } from "#api/types";
 
 import { type TestFixture, type TestPaginatedFixture } from "./types";
 
@@ -48,7 +44,7 @@ export const getTestFixture = <T>(list: T[], idKey: ConditionalKeys<T, string>):
 export const getPaginatedList = <T>(
   list: T[],
   queryArgs?: Partial<GetPaginatedEntitiesQueryArg>,
-): { data: T[]; pagination: ApiPaginationMeta } => {
+): { data: T[]; pagination: Pagination } => {
   const { page = 1, size = DEFAULT_PAGE_SIZE } = queryArgs ?? {};
   const itemCount = list.length;
   const pageCount = Math.ceil(itemCount / size);

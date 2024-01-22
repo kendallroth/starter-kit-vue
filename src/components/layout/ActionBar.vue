@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-type ActionBarProps = {
+interface ActionBarProps {
   /** Whether actions are left-aligned */
   left?: boolean;
   /** Whether actions are right-aligned */
   right?: boolean;
   /** Spacing in left/right action bars */
   spacing?: number;
-};
+}
 
 withDefaults(defineProps<ActionBarProps>(), {
   left: false,
@@ -17,12 +17,7 @@ withDefaults(defineProps<ActionBarProps>(), {
 
 <template>
   <div class="action-bar">
-    <LayoutStack
-      v-if="$slots.left || left"
-      align-items="center"
-      direction="row"
-      :spacing="spacing"
-    >
+    <LayoutStack v-if="$slots.left || left" align-items="center" direction="row" :spacing="spacing">
       <slot v-if="$slots.left" name="left" />
       <template v-else-if="left">
         <slot />

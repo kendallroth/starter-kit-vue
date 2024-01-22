@@ -1,3 +1,10 @@
+# Not found page
+appNotFound:
+  title: "Página no encontrada"
+  message: "La página que estás buscando no parece existir"
+  actions:
+    home: "Inicio"
+
 # Debug View
 debugView:
   title: "Depurar"
@@ -38,9 +45,19 @@ formView:
     text:
       label: "Texto"
 
+# Quotes view
+quotesView:
+  title: "Citas"
+  list:
+    actions:
+      sort:
+        fields:
+          author: "Autor"
+          createdAt: "Creado en"
+
 # Settings view
 settingsView:
-  title: "Settings"
+  title: "Ajustes"
   sections:
     personalization:
       title: "Personalización"
@@ -62,3 +79,8 @@ todosView:
 welcomeView:
   title: "StarterKit - Vue!"
   subtitle: "Bienvenido a el Vue StarterKit!"
+  sections:
+    quoteOfTheDay:
+      title: "Cita del día"
+    randomQuote:
+      title: "Cita aleatoria"

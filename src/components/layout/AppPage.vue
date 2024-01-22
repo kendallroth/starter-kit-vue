@@ -3,7 +3,7 @@ import LayoutStack, { type LayoutStackProps } from "./LayoutStack.vue";
 
 withDefaults(
   defineProps<{
-    contentProps?: Partial<LayoutStackProps>;
+    contentProps?: Partial<LayoutStackProps & { class: string }>;
     title?: string;
   }>(),
   {
@@ -16,12 +16,20 @@ withDefaults(
 <template>
   <VCard class="app-page" elevation="4">
     <slot name="title">
-      <Typography class="py-4 px-6" variant="title-1">{{ title }}</Typography>
+      <TitleBar class="py-4 px-6" :title="title">
+        <template v-if="$slots['title-append']" #title-append>
+          <slot name="title-append" />
+        </template>
+        <slot name="title-content" />
+      </TitleBar>
     </slot>
     <VDivider />
+
+    <slot name="content-prepend" />
     <LayoutStack class="pa-4 page-content pretty-scroll" v-bind="contentProps">
       <slot name="default" />
     </LayoutStack>
+    <slot name="content-append" />
   </VCard>
 </template>
 

@@ -28,6 +28,10 @@
   }
 }
 
+.flex-basis-auto {
+  flex-basis: auto !important;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s ease;

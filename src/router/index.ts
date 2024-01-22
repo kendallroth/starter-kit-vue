@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import { FormView } from "../views/FormView";
+import { QuotesView } from "../views/QuotesView";
 import { TodosView } from "../views/TodosView";
 import WelcomeView from "../views/WelcomeView.vue";
 
@@ -26,9 +27,19 @@ const router = createRouter({
       component: TodosView,
     },
     {
+      path: "/quotes",
+      name: "quotes",
+      component: QuotesView,
+    },
+    {
       path: "/settings",
       name: "settings",
       component: () => import("../views/SettingsView/SettingsView.vue"),
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "notFound",
+      component: () => import("../views/NotFoundView.vue"),
     },
   ],
 });

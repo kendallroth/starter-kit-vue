@@ -23,6 +23,7 @@ declare module "@vue/runtime-core" {
     ProgressLoader: typeof import("#components/layout/ProgressLoader.vue").default;
 
     // Typography
+    TitleBar: typeof import("#components/typography/TitleBar.vue").default;
     Typography: typeof import("#components/typography/Typography.vue").default;
   }
 }

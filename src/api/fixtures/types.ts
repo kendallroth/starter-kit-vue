@@ -1,4 +1,4 @@
-import { type ApiPaginationMeta } from "#api/types";
+import type { Pagination } from "#api/types";
 
 /** Map of entities by ID to value (entity itself) */
 export type EntityMap<T> = Record<string, T>;
@@ -15,5 +15,5 @@ export interface TestFixture<Entity> {
 
 /** Test paginated fixture providing easy access to test data via multiple structures */
 export interface TestPaginatedFixture<Entity> extends TestFixture<Entity> {
-  pagination: ApiPaginationMeta;
+  pagination: Pagination;
 }

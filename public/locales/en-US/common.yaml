@@ -1,5 +1,6 @@
 # Common app actions
 actions:
+  back: "Back"
   cancel: "Cancel"
   close: "Close"
   confirm: "Confirm"
@@ -10,6 +11,7 @@ appDrawer:
   links:
     debug: "Debug"
     forms: "Forms"
+    quotes: "Quotes"
     settings: "Settings"
     todos: "Todos"
     welcome: "Welcome"

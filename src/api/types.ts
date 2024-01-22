@@ -1,26 +1,13 @@
-/** API pagination information */
-export interface ApiPaginationMeta {
-  page: number;
-  size: number;
-  totalItems: number;
-  totalPages: number;
-}
+import type { PaginationQuery } from "@kendallroth/starter-kit-api/shared";
 
-/** Response with paginated data and meta information */
-export interface PaginatedResponse<T> {
-  data: T[];
-  pagination: ApiPaginationMeta;
-}
-
-/** Pagination app input/state */
-export interface Pagination {
-  page: number;
-  size: number;
-}
+export type {
+  Pagination,
+  PaginationInput,
+  PaginationQuery,
+  PaginatedResult,
+} from "@kendallroth/starter-kit-api/shared";
 
 /** Vue Query args for paginated entities */
-export interface GetPaginatedEntitiesQueryArg extends Pagination {
-  sort?: string;
-}
+export type GetPaginatedEntitiesQueryArg = PaginationQuery;
 
 export const DEFAULT_PAGE_SIZE = 10;

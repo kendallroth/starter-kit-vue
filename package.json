@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "run-p type \"build:onlyl {@}\" --",
+    "api": "sk-api --port 3001",
+    "build": "run-p type \"build:only {@}\" --",
     "build:only": "vite build",
     "code:format": "prettier --write \"**/*.{ts,vue}\" --ignore-path .gitignore",
     "code:lint": "eslint \"**/*.{ts,vue}\" --ignore-path .gitignore",
@@ -16,11 +17,12 @@
   "dependencies": {
     "@faker-js/faker": "^8.1.0",
     "@fontsource-variable/manrope": "^5.0.12",
+    "@kendallroth/starter-kit-api": "^0.4.0",
     "@mdi/js": "^7.2.96",
     "@tanstack/vue-query": "^4.35.7",
     "@types/js-yaml": "^4.0.6",
     "@vee-validate/yup": "^4.11.7",
-    "@vueuse/core": "^10.4.1",
+    "@vueuse/core": "^10.7.2",
     "assert": "^2.1.0",
     "axios": "^1.5.1",
     "dayjs": "^1.11.10",
@@ -36,7 +38,7 @@
     "vite-plugin-vuetify": "^1.0.2",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4",
-    "vuetify": "^3.3.19",
+    "vuetify": "^3.4.11",
     "yup": "^1.3.1"
   },
   "devDependencies": {
