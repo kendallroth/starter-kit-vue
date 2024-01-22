@@ -48,13 +48,15 @@ npm install
 - [x] Vue Query (queries, pagination, mutations)
   - Example of optimistic updates (on paginated route)
 - [x] MSW endpoints (with fixtures)
-- [ ] Implement JSON server for simple data persistance
+- [x] Vuetify customization/overrides
+- [x] Implement JSON server for simple data persistance
+  - [ ] Update "Todos" to use authentication
+- [ ] User authentication
 - [ ] Form submission (success/failure)
   - Should set form-level server error for API errors
   - Error message utilities
 - [ ] Styling utilities
   - Media query mixins, etc
-- [ ] Adjust typography variants
 
 ### Forms
 
