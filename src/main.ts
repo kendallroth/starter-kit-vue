@@ -7,6 +7,7 @@ import { createApp } from "vue";
 
 import { appConfig } from "#config/app";
 import { componentsPlugin } from "#plugins/components";
+import { globalPropertiesPlugin } from "#plugins/global-properties";
 import { i18nPlugin } from "#plugins/i18n";
 import { vueQueryPlugin } from "#plugins/vue-query";
 import { vuetifyPlugin } from "#plugins/vuetify";
@@ -35,6 +36,7 @@ app
   .use(i18nPlugin)
   .use(vuetifyPlugin)
   .use(router)
+  .use(globalPropertiesPlugin)
   .use(componentsPlugin)
   .use(vueQueryPlugin);
 

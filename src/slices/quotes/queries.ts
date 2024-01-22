@@ -7,16 +7,19 @@ import type { Quote } from "./types";
 
 export const quoteQueryKeys = {
   all: () => ["quotes"],
-  allPaginated: (pagination?: PaginationInput) => [quoteQueryKeys.all(), pagination],
-  qod: () => [quoteQueryKeys.all(), "quoteOfDay"],
+  allPaginated: (args: PaginationInput & { search?: string; sort?: string }) => [
+    ...quoteQueryKeys.all(),
+    args,
+  ],
+  qod: () => [...quoteQueryKeys.all(), "quoteOfDay"],
+  random: () => [...quoteQueryKeys.all(), "quoteRandom"],
 } as const;
 
-export const useQuotesQuery = ({ pagination }: { pagination?: PaginationInput }) => {
+export const useQuotesQuery = (args: PaginationInput & { search?: string; sort?: string }) => {
   return useQuery({
     keepPreviousData: true,
-    queryFn: () =>
-      api.get<PaginatedResult<Quote>>("/quote", { params: pagination }).then((r) => r.data),
-    queryKey: quoteQueryKeys.allPaginated(pagination),
+    queryFn: () => api.get<PaginatedResult<Quote>>("/quote", { params: args }).then((r) => r.data),
+    queryKey: quoteQueryKeys.allPaginated(args),
   });
 };
 
@@ -25,5 +28,13 @@ export const useQuoteOfDayQuery = () => {
     keepPreviousData: true,
     queryFn: () => api.get<Quote>("/quote/qod").then((r) => r.data),
     queryKey: quoteQueryKeys.qod(),
+  });
+};
+
+export const useRandomQuoteQuery = () => {
+  return useQuery({
+    keepPreviousData: true,
+    queryFn: () => api.get<Quote>("/quote/random").then((r) => r.data),
+    queryKey: quoteQueryKeys.random(),
   });
 };

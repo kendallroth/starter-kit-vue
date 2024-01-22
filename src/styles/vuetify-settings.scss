@@ -1,9 +1,22 @@
 // NOTE: Avoid putting any styles in this file, as it is included with all SCSS files!!!
 
-// Must unquote font-family declarations to avoid SASS to CSS quoting issues
-@use "sass:string";
+// Must use separate variable for font-family declarations to avoid SASS to CSS quoting issues
+$font-family-custom: "Manrope Variable", sans-serif;
 
+// NOTE: Settings appear to be deeply merged with underlying Vuetify variables
 @use 'vuetify/settings' with (
-  $body-font-family: string.unquote("'Manrope Variable', sans-serif"),
-  $heading-font-family: string.unquote("'Manrope Variable', sans-serif'")
+  $body-font-family: $font-family-custom,
+  $heading-font-family: $font-family-custom,
+
+  $typography: (
+    "h2": (
+      "size": 2rem,
+      "line-height": 2.5rem,
+      "weight": 400
+    ),
+    "h3": (
+      "size": 1.4rem,
+      "line-height": 1.9rem
+    )
+  )
 );

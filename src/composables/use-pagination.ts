@@ -2,6 +2,7 @@ import { reactive } from "vue";
 
 import { DEFAULT_PAGE_SIZE, type PaginationInput } from "#api/types";
 
+/** Pagination utilities */
 export const usePagination = (args: { page?: number; size?: number } = {}) => {
   const pagination = reactive<PaginationInput>({
     page: args.page ?? 1,

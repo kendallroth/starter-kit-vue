@@ -48,9 +48,12 @@ formView:
 # Quotes view
 quotesView:
   title: "Citas"
-  sections:
-    quotes:
-      title: "Cita del día"
+  list:
+    actions:
+      sort:
+        fields:
+          author: "Autor"
+          createdAt: "Creado en"
 
 # Settings view
 settingsView:
@@ -76,3 +79,8 @@ todosView:
 welcomeView:
   title: "StarterKit - Vue!"
   subtitle: "Bienvenido a el Vue StarterKit!"
+  sections:
+    quoteOfTheDay:
+      title: "Cita del día"
+    randomQuote:
+      title: "Cita aleatoria"

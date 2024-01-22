@@ -39,10 +39,8 @@ const languageOptions = supportedLanguages.map((l) => ({
 
 <template>
   <AppPage :title="tLocal('title')">
-    <Typography class="mb-2" variant="title-2">
-      {{ tLocal("sections.personalization.title") }}
-    </Typography>
-    <Typography>{{ tLocal("sections.personalization.items.theme.label") }}</Typography>
+    <TitleBar :title="tLocal('sections.personalization.title')" type="section" />
+    <Typography class="mb-2">{{ tLocal("sections.personalization.items.theme.label") }}</Typography>
     <VSelect
       class="select-field"
       hide-details

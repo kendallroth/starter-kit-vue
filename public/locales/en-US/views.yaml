@@ -48,6 +48,12 @@ formView:
 # Quotes view
 quotesView:
   title: "Quotes"
+  list:
+    actions:
+      sort:
+        fields:
+          author: "Author"
+          createdAt: "Created At"
 
 # Settings view
 settingsView:
@@ -74,5 +80,7 @@ welcomeView:
   title: "StarterKit - Vue!"
   subtitle: "Welcome to the Vue StarterKit!"
   sections:
-    quotes:
+    quoteOfTheDay:
       title: "Quote of the Day"
+    randomQuote:
+      title: "Random Quote"
