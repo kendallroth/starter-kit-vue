@@ -1,4 +1,14 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/vue-query";
+import {
+  keepPreviousData,
+  useMutation,
+  // NOTE: For some reason without importing these types all MSW utilities complain...
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  type UseMutationReturnType,
+  useQuery,
+  useQueryClient,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  type UseQueryReturnType,
+} from "@tanstack/vue-query";
 
 import { api } from "#api/fetcher";
 
@@ -13,7 +23,7 @@ export const todoQueryKeys = {
 
 export const useTodosQuery = ({ pagination }: { pagination?: PaginationInput }) => {
   return useQuery({
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
     queryFn: () =>
       api.get<PaginatedResult<Todo>>("/todos", { params: pagination }).then((r) => r.data),
     queryKey: todoQueryKeys.allPaginated(pagination),

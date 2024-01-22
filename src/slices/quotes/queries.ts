@@ -1,4 +1,10 @@
-import { useQuery } from "@tanstack/vue-query";
+import {
+  keepPreviousData,
+  useQuery,
+  // NOTE: For some reason without importing these types all MSW utilities complain...
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  type UseQueryReturnType,
+} from "@tanstack/vue-query";
 
 import { api } from "#api/fetcher";
 
@@ -17,7 +23,7 @@ export const quoteQueryKeys = {
 
 export const useQuotesQuery = (args: PaginationInput & { search?: string; sort?: string }) => {
   return useQuery({
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
     queryFn: () => api.get<PaginatedResult<Quote>>("/quote", { params: args }).then((r) => r.data),
     queryKey: quoteQueryKeys.allPaginated(args),
   });
@@ -25,7 +31,7 @@ export const useQuotesQuery = (args: PaginationInput & { search?: string; sort?:
 
 export const useQuoteOfDayQuery = () => {
   return useQuery({
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
     queryFn: () => api.get<Quote>("/quote/qod").then((r) => r.data),
     queryKey: quoteQueryKeys.qod(),
   });
@@ -33,7 +39,7 @@ export const useQuoteOfDayQuery = () => {
 
 export const useRandomQuoteQuery = () => {
   return useQuery({
-    keepPreviousData: true,
+    placeholderData: keepPreviousData,
     queryFn: () => api.get<Quote>("/quote/random").then((r) => r.data),
     queryKey: quoteQueryKeys.random(),
   });
