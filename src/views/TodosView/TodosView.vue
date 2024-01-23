@@ -38,7 +38,7 @@ const {
 
 const todoInput = ref("");
 
-const { isLoading: addingTodo, ...todoAddMutation } = useTodoAddMutation();
+const { isPending: addingTodo, ...todoAddMutation } = useTodoAddMutation();
 
 const handleTodoAdd = async () => {
   // Ensure value is trimmed (and saved again as such)
@@ -83,7 +83,7 @@ const handleTodoSelection = (todos: unknown[]) => {
   selectedTodo.value = todos[0] as Todo;
 };
 
-const { isLoading: deletingTodo, ...todoDeleteMutation } = useTodoDeleteMutation();
+const { isPending: deletingTodo, ...todoDeleteMutation } = useTodoDeleteMutation();
 
 const handleTodoDelete = async (todo: Todo) => {
   try {

@@ -1,11 +1,14 @@
+/// <reference types="vitest" />
+
 import { fileURLToPath, URL } from "node:url";
 
 import vue from "@vitejs/plugin-vue";
+import { defineConfig } from "vite";
 import vuetify from "vite-plugin-vuetify";
-import { configDefaults, defineConfig } from "vitest/config";
+import { defaultExclude } from "vitest/config";
 
 /** Get path to file for Vite alias */
-const getAliasPath = (filepath: string) =>
+export const getAliasPath = (filepath: string) =>
   fileURLToPath(new URL(`./src/${filepath}`, import.meta.url));
 
 export default defineConfig({
@@ -64,7 +67,7 @@ export default defineConfig({
   },
   test: {
     environment: "jsdom",
-    exclude: [...configDefaults.exclude, "e2e/*"],
+    exclude: [...defaultExclude, "e2e/*"],
     root: getAliasPath("./"),
   },
 });

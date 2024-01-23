@@ -10,7 +10,7 @@ export const vueQueryPlugin = {
       defaultOptions: {
         queries: {
           // Time until inactive queries (no observers registered) will be removed from cache
-          cacheTime: 5 * 60 * 1000, // 5 min
+          gcTime: 5 * 60 * 1000, // 5 min
           refetchOnWindowFocus: appConfig.development,
           retry: 1,
           // Time until a query transitions from fresh (read from cache) to stale (possible refetch).
