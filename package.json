@@ -1,7 +1,10 @@
 {
   "name": "starter-kit-vue",
-  "version": "0.0.0",
   "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "api": "sk-api --port 3001",
     "build": "run-p type \"build:only {@}\" --",
