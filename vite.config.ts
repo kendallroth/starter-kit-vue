@@ -21,12 +21,12 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        // Some SCSS files (vars, mixins, etc) should automatically be imported in all SCSS
-        //   files and Vue template blocks to reduce common SCSS imports.
-        // NOTE: While `@use` is preferred to `@import`, it must come before any other SCSS!
+        // Provide utility SCSS files to all SCSS files (including SFC templates, etc)
+        // NOTE: Must avoid importing utility files to any Vuetify or main files,
+        //         to avoid circular imports (compiler error with '@use')!
         additionalData(source: string, fp: string) {
-          // Avoid importing utility files within any Vuetify SCSS
-          if (fp.includes("vuetify")) return source;
+          const skippedFileParts = ["vuetify", "app.scss"];
+          if (skippedFileParts.some((part) => fp.includes(part))) return source;
 
           return `
               @use "#styles/_functions.scss" as *;
