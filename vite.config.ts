@@ -33,6 +33,7 @@ export default defineConfig({
               ${source}
             `;
         },
+        api: "modern-compiler",
       },
     },
   },
