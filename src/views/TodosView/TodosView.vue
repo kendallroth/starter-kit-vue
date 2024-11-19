@@ -74,13 +74,13 @@ const handleTodoUpdate = async (todo: Todo) => {
 
 const selectedTodo = ref<Todo | null>(null);
 
-const handleTodoSelection = (todos: unknown[]) => {
+const handleTodoSelection = (todos: Todo[]) => {
   if (!todos.length) {
     selectedTodo.value = null;
     return;
   }
 
-  selectedTodo.value = todos[0] as Todo;
+  selectedTodo.value = todos[0];
 };
 
 const { isPending: deletingTodo, ...todoDeleteMutation } = useTodoDeleteMutation();
@@ -132,7 +132,7 @@ const handleTodoDelete = async (todo: Todo) => {
         <VList
           class="pretty-scroll bg-transparent py-0"
           density="compact"
-          @update:selected="handleTodoSelection"
+          @update:selected="(item) => handleTodoSelection(item as Todo[])"
         >
           <TodoItem
             v-for="todo in response.data ?? []"

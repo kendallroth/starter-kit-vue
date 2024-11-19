@@ -4,7 +4,7 @@ Vue Reactivity comes with some caveats that are not always obvious. While the do
 
 ## Definitions
 
-- `usePagination` - returns `reactive` object
+- `usePagination` - returns object with `ref`s
 - `refDebounced` - returns `ref` object
 
 ## Separate Query Args
@@ -15,25 +15,28 @@ This approach emphasizes using `ref` API for individual query args, resulting in
   - More type safety _concerning_ reactivity for non-reactive values
 - **Cons:**
   - Complicates query key management
-    - Particularly when `reactive` and `ref` values are mixed
+    - Particularly when `reactive` and `ref` values are mixed (should be avoided!)
 
 ```ts
+type PaginationInput = { page: Ref<number>; pageSize: Ref<number> };
+type QuotePaginatedArgs = PaginationInput & { search?: Ref<string> };
+
 const quoteQueryKeys = {
-  allPaginated: (pagination: PaginationInput, search?: Ref<string>) => ["quote", args],
+  allPaginated: (args: QuotePaginatedArgs) => ["quote", args],
 } as const;
 
-const useQuotesQuery = (pagination: PaginationInput, search?: Ref<string> }) => useQuery({
+const useQuotesQuery = (args: QuotePaginatedArgs) => useQuery({
   queryFn: () => api.get<PaginatedResult<Quote>>("/quote", {
     params: { ...pagination, search }
   }).then((r) => r.data),
-  queryKey: quoteQueryKeys.allPaginated(pagination, search),
+  queryKey: quoteQueryKeys.allPaginated(args),
 });
 
 const { pagination } = usePagination({ size: 10 });
 const quoteSearch = ref("");
 const quoteSearchDebounced = refDebounced(quoteSearch, 500, { maxWait: 1000 });
 
-const quotesQuery = useQuotesQuery(pagination, quoteSearchDebounced);
+const quotesQuery = useQuotesQuery({ ...pagination, search: quoteSearchDebounced });
 ```
 
 ## Reactive Query Args
@@ -49,6 +52,8 @@ This approach emphasizes using `reactive` API for grouped query args, resulting 
     - Would always be an issue for any `reactive` objects utilized (ie. `pagination` in examples)...
 
 ```ts
+type PaginationInput = { page: Ref<number>; pageSize: Ref<number> };
+
 const quoteQueryKeys = {
   allPaginated: (args: PaginationInput & { search?: string }) => ["quote", args],
 } as const;

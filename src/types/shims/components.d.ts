@@ -6,7 +6,7 @@
  * NOTE: Registering components via "typical" imports causes issues with circular references,
  *         so components must be imported directly from their files!
  */
-declare module "@vue/runtime-core" {
+declare module "vue" {
   export interface GlobalComponents {
     // Form
     CheckboxField: typeof import("#components/form/CheckboxField.vue").default;
